@@ -1,10 +1,14 @@
-[![build status](https://img.shields.io/travis/rackt/react-router/master.svg?style=flat-square)](https://travis-ci.org/rackt/react-router)
-[![npm package](https://img.shields.io/npm/v/react-router.svg?style=flat-square)](https://www.npmjs.org/package/react-router)
-[![#rackt on freenode](https://img.shields.io/badge/irc-rackt_on_freenode-61DAFB.svg?style=flat-square)](https://webchat.freenode.net/)
+# [React Router 中文文档](https://github.com/react-guide/react-router-cn)
 
 <img src="https://rackt.github.io/react-router/img/vertical.png" width="300"/>
 
-A complete routing library for React
+在线 Gitbook 地址：http://react-guide.github.io/react-router-cn/
+
+英文原版：https://github.com/rackt/react-router/tree/master/docs
+
+**翻译正在进行中，[加入我们](https://github.com/react-guide/translation-guide)**
+
+React Router 是完整的 React 路由解决方案
 
 React Router keeps your UI in sync with the URL. It has a simple API
 with powerful features like lazy code loading, dynamic route matching,
@@ -20,11 +24,11 @@ thought, not an after-thought.
 
 **Note:** *If you are still using React Router 0.13.x [the docs](https://github.com/rackt/react-router/tree/0.13.x/docs/guides) can be found on [the 0.13.x branch](https://github.com/rackt/react-router/tree/0.13.x).*
 
-### Browser Support
+### 浏览器支持
 
 We support all browsers and environments where React runs.
 
-### Installation
+### 安装
 
 #### npm + webpack/browserify
 
@@ -132,7 +136,7 @@ React.render((
 
 See more in the [Introduction](/docs/Introduction.md), [Advanced Usage](/docs/guides/advanced/README.md), and [Examples](/examples).
 
-### Thanks
+### 感谢
 
 React Router was initially inspired by Ember's fantastic router. Many thanks to the Ember team.
 
