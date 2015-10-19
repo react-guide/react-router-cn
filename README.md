@@ -15,8 +15,8 @@ React Router 保持 UI 与 URL 同步。它拥有简单的 API 与强大的功�
 ### 文档 & 帮助
 
 - [API 文档与指南](/docs)
-- [Upgrade Guide](/UPGRADE_GUIDE.md)
-- [Changelog](/CHANGELOG.md)
+- [Upgrade Guide](https://github.com/rackt/react-router/blob/master/UPGRADE_GUIDE.md)
+- [Changelog](https://github.com/rackt/react-router/blob/master/CHANGELOG.md)
 - [#react-router channel on reactiflux](http://www.reactiflux.com/)
 
 **注意：** **如果你仍然使用的是 React Router 0.13.x，可以在 [the 0.13.x branch](https://github.com/rackt/react-router/tree/0.13.x) 找到 [文档](https://github.com/rackt/react-router/tree/0.13.x/docs/guides)。**
@@ -48,13 +48,13 @@ var Route = ReactRouter.Route
 var Link = ReactRouter.Link
 ```
 
-你可以从 `lib` 目录 require 部分你需要的：
+你可以从 `lib` 目录 require 你需要的部分：
 
 ```js
 import { Router } from 'react-router/lib/Router'
 ```
 
-在 `umd` 还有一个 UMD 的构造：
+在 `umd` 目录还有一个 UMD 模块格式来构建：
 
 ```js
 import ReactRouter from 'react-router/umd/ReactRouter'
@@ -64,7 +64,7 @@ import ReactRouter from 'react-router/umd/ReactRouter'
 
 #### CDN
 
-如果你想在页面上用 `<script>` 标签来完成它，你可以用 UMD/global 构造 [cdnjs 上的托管](https://cdnjs.com/libraries/react-router)。
+如果你想在页面上用 `<script>` 标签来完成它，你可以用 UMD/global 构建 [cdnjs 托管版本](https://cdnjs.com/libraries/react-router)。
 
 ### 这看起来像什么？
 
@@ -131,7 +131,7 @@ React.render((
 ), document.body)
 ```
 
-更多请看 [介绍](/docs/Introduction.md)、[高级用法](/docs/guides/advanced/README.md)和 [示例](/examples)。
+更多请看 [介绍](/docs/Introduction.md)、[高级用法](/docs/guides/advanced/README.md)和 [示例](https://github.com/rackt/react-router/tree/master/examples)。
 
 ### 感谢
 
