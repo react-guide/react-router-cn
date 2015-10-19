@@ -10,66 +10,63 @@
 
 React Router 是完整的 React 路由解决方案
 
-React Router keeps your UI in sync with the URL. It has a simple API
-with powerful features like lazy code loading, dynamic route matching,
-and location transition handling built right in. Make the URL your first
-thought, not an after-thought.
+React Router 保持 UI 与 URL 同步。它拥有简单的 API 与强大的功能例如代码缓冲加载、动态路由匹配、以及建立正确的位置过渡处理。你第一个念头想到的应该是 RUL，而不是事后再想起。
 
-### Docs & Help
+### 文档 & 帮助
 
-- [Guides and API Docs](/docs)
+- [API 文档与指南](/docs)
 - [Upgrade Guide](/UPGRADE_GUIDE.md)
 - [Changelog](/CHANGELOG.md)
 - [#react-router channel on reactiflux](http://www.reactiflux.com/)
 
-**Note:** *If you are still using React Router 0.13.x [the docs](https://github.com/rackt/react-router/tree/0.13.x/docs/guides) can be found on [the 0.13.x branch](https://github.com/rackt/react-router/tree/0.13.x).*
+**注意：** **如果你仍然使用的是 React Router 0.13.x，可以在 [the 0.13.x branch](https://github.com/rackt/react-router/tree/0.13.x) 找到 [文档](https://github.com/rackt/react-router/tree/0.13.x/docs/guides)。**
 
 ### 浏览器支持
 
-We support all browsers and environments where React runs.
+我们支持所有的浏览器和环境中运行 React。
 
 ### 安装
 
 #### npm + webpack/browserify
 
-Install using [npm](https://www.npmjs.com/):
+首先通过 [npm](https://www.npmjs.com/) 安装：
 
     $ npm install history react-router@latest
 
-Note that you need to also install the [history](https://www.npmjs.com/package/history) package since it is a peer dependency of React Router and won't automatically be installed for you in npm 3+.
+请注意，你还需要安装 [history](https://www.npmjs.com/package/history)，因为它也是 React Router 的依赖，而且在 npm 3+ 下不会自动安装。
 
-Then with a module bundler or webpack, use as you would anything else:
+然后如你使用别的一样使用模块管理器或者 webpack：
 
 ```js
-// using an ES6 transpiler, like babel
+// 使用 ES6 的转译器，如 babel
 import { Router, Route, Link } from 'react-router'
 
-// not using an ES6 transpiler
+// 不使用 ES6 的转译器
 var ReactRouter = require('react-router')
 var Router = ReactRouter.Router
 var Route = ReactRouter.Route
 var Link = ReactRouter.Link
 ```
 
-You can require only the pieces you need straight from the `lib` directory:
+你可以从 `lib` 目录 require 部分你需要的：
 
 ```js
 import { Router } from 'react-router/lib/Router'
 ```
 
-There's also a UMD build in the `umd` directory:
+在 `umd` 还有一个 UMD 的构造：
 
 ```js
 import ReactRouter from 'react-router/umd/ReactRouter'
 ```
 
-If you're using globals, you can find the library on `window.ReactRouter`.
+如果你要全局调用，你可以在 `window.ReactRouter` 找到这个库。
 
 #### CDN
 
-If you just want to drop a `<script>` tag in your page and be done with it, you can use the UMD/global build [hosted on cdnjs](https://cdnjs.com/libraries/react-router).
+如果你想在页面上用 `<script>` 标签来完成它，你可以用 UMD/global 构造 [cdnjs 上的托管](https://cdnjs.com/libraries/react-router)。
 
-### What's it look like?
+### 这看起来像什么？
 
 ```js
 import React from 'react'
@@ -77,7 +74,7 @@ import { Router, Route, Link } from 'react-router'
 
 const App = React.createClass({/*...*/})
 const About = React.createClass({/*...*/})
-// etc.
+// 等等。
 
 const Users = React.createClass({
   render() {
@@ -86,7 +83,7 @@ const Users = React.createClass({
         <h1>Users</h1>
         <div className="master">
           <ul>
-            {/* use Link to route around the app */}
+            {/* 在应用中用 Link 去链接路由 */}
             {this.state.users.map(user => (
               <li key={user.id}><Link to={`/user/${user.id}`}>{user.name}</Link></li>
             ))}
@@ -103,7 +100,7 @@ const Users = React.createClass({
 const User = React.createClass({
   componentDidMount() {
     this.setState({
-      // route components are rendered with useful information, like URL params
+      // 路由应该通过有用的信息来呈现，例如 URL 的参数
       user: findUserById(this.props.params.userId)
     })
   },
@@ -112,15 +109,15 @@ const User = React.createClass({
     return (
       <div>
         <h2>{this.state.user.name}</h2>
-        {/* etc. */}
+        {/* 等等。 */}
       </div>
     )
   }
 })
 
-// Declarative route configuration (could also load this config lazily
-// instead, all you really need is a single root route, you don't need to
-// colocate the entire config).
+// 路由配置说明（你不用加载整个配置，
+// 只需加载一个你想要的根路由，
+// 也可以延迟加载这个配置）。
 React.render((
   <Router>
     <Route path="/" component={App}>
@@ -134,10 +131,10 @@ React.render((
 ), document.body)
 ```
 
-See more in the [Introduction](/docs/Introduction.md), [Advanced Usage](/docs/guides/advanced/README.md), and [Examples](/examples).
+更多请看 [介绍](/docs/Introduction.md)、[高级用法](/docs/guides/advanced/README.md)和 [示例](/examples)。
 
 ### 感谢
 
-React Router was initially inspired by Ember's fantastic router. Many thanks to the Ember team.
+React Router 灵感来源于 Ember's fantastic router。非常感谢 Ember 团队。
 
-Also, thanks to [BrowserStack](https://www.browserstack.com/) for providing the infrastructure that allows us to run our build in real browsers.
+同时，也感谢 [BrowserStack](https://www.browserstack.com/) 提供一个平台让我们能在真实的浏览器中运行我们的项目。
