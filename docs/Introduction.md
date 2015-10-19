@@ -2,7 +2,7 @@
 
 React Router 是一个基于 [React](http://facebook.github.io/react/)  之上的强大路由库，它可以让你快速地添加视图和数据流到你的应用中，同时保持页面与 URL 间的同步。
 
-为了向你说明 React Router 的问题，让我们来创建一个不使用它的应用。
+为了向你说明 React Router 解决的问题，让我们来创建一个不使用它的应用。
 
 ### 不使用 React Router
 
