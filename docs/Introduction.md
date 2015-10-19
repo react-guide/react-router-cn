@@ -1,10 +1,10 @@
-# Introduction
+# 简介
 
-React Router is a powerful routing library built on top of [React](http://facebook.github.io/react/) that helps you add new screens and flows to your application incredibly quickly, all while keeping the URL in sync with what's being displayed on the page.
+React Router 是一个基于 [React](http://facebook.github.io/react/) 之上的强大路由库，为了帮助你快速地添加视图和数据流到你的应用中，同时保持页面与 URL 间的同步。
 
-To illustrate the problems React Router is going to solve for you, let's build a small application without it.
+为了向你说明 React Router 的问题，让我们来创建一个不使用它的应用。
 
-### Without React Router
+### 不使用 React Router
 
 ```js
 import React from 'react'
@@ -52,9 +52,9 @@ const App = React.createClass({
 React.render(<App />, document.body)
 ```
 
-As the hash portion of the URL changes, `<App>` will render a different `<Child>` by branching on `this.state.route`. Pretty straightforward stuff. But it gets complicated fast.
+作为 URL 变化的散列部分，`<App>` 会渲染从 `this.state.route` 分支而来的不同 `<Child>`。一个很简单的东西，却被弄得如此复杂。
 
-Imagine now that `Inbox` has some nested UI at different URLs, maybe something like this master detail view:
+现在想象一下 `Inbox` 有一些在不同的 URL 下的嵌套 UI，主页的详细视图可能像这样：
 
 ```
 path: /inbox/messages/1234
@@ -74,7 +74,7 @@ path: /inbox/messages/1234
 +--------------+--------------------------------+
 ```
 
-And maybe a stats page when not viewing a message:
+然后这可能是一个不查看 message 时的静态页面：
 
 ```
 path: /inbox
@@ -94,34 +94,34 @@ path: /inbox
 +--------------+--------------------------------+
 ```
 
-We'd have to make our URL parsing a lot smarter, and we would end up with a lot of code to figure out which branch of nested components to be rendered at any given URL: `App -> About`, `App -> Inbox -> Messages -> Message`, `App -> Inbox -> Messages -> Stats`, etc.
+我们必须让我们的 URL 解析得更智能，然后我们会得到很多的代码去找出给定的 URL 应该是哪一个要被渲染的嵌套组件分支：`App -> About`, `App -> Inbox -> Messages -> Message`, `App -> Inbox -> Messages -> Stats`，等等。
 
-### With React Router
+### 使用 React Router
 
-Let's refactor our app to use React Router.
+让我们用 React Router 重构这个应用。
 
 ```js
 import React from 'react'
 
-// First we import some components...
+// 首先我们需要导入一些组件...
 import { Router, Route, Link } from 'react-router'
 
-// Then we delete a bunch of code from App and
-// add some <Link> elements...
+// 然后我们从应用中删除一堆代码和
+// 增加一些 <Link> 元素...
 const App = React.createClass({
   render() {
     return (
       <div>
         <h1>App</h1>
-        {/* change the <a>s to <Link>s */}
+        {/* 把 <a> 变成 <Link> */}
         <ul>
           <li><Link to="/about">About</Link></li>
           <li><Link to="/inbox">Inbox</Link></li>
         </ul>
 
         {/*
-          next we replace `<Child>` with `this.props.children`
-          the router will figure out the children for us
+          接着用 `this.props.children` 替换 `<Child>`
+          router 会帮我们找到这个 children
         */}
         {this.props.children}
       </div>
@@ -129,8 +129,8 @@ const App = React.createClass({
   }
 })
 
-// Finally, we render a <Router> with some <Route>s.
-// It does all the fancy routing stuff for us.
+// 最后，我们用一些 <Route> 来渲染 <Router>。
+// 这些就是路由提供的我们想要的东西。
 React.render((
   <Router>
     <Route path="/" component={App}>
@@ -141,7 +141,7 @@ React.render((
 ), document.body)
 ```
 
-React Router knows how to build nested UI for us, so we don't have to manually figure out which `<Child>` component to render. Internally, the router converts your `<Route>` element hierarchy to a [route config](/docs/Glossary.md#routeconfig). But if you're not digging the JSX you can use plain objects instead:
+React Router 知道如何为我们搭建嵌套的 UI，因此我们不用手动地去找出哪些 `<Child>` 组件是用于渲染的。 在内部，router 会将你元素等级的 `<Route>` 转变成一个 [路由配置](/docs/Glossary.md#routeconfig)。但如果你对 JSX 没有研究，那么你可以用普通对象来替代：
 
 ```js
 const routes = {
@@ -156,12 +156,12 @@ const routes = {
 React.render(<Router routes={routes} />, document.body)
 ```
 
-## Adding More UI
+## 添加更多的 UI
 
-Alright, now we're ready to nest the inbox messages inside the inbox UI.
+好了，现在我们准备在 inbox UI 内部嵌套 inbox messages。
 
 ```js
-// Make a new component to render inside of Inbox
+// 新建一个组件让其在 Inbox 内部渲染
 const Message = React.createClass({
   render() {
     return <h3>Message</h3>
@@ -173,7 +173,7 @@ const Inbox = React.createClass({
     return (
       <div>
         <h2>Inbox</h2>
-        {/* Render the child route component */}
+        {/* 渲染这个 child 路由组件 */}
         {this.props.children || "Welcome to your Inbox"}
       </div>
     )
@@ -185,7 +185,7 @@ React.render((
     <Route path="/" component={App}>
       <Route path="about" component={About} />
       <Route path="inbox" component={Inbox}>
-        {/* Add the route, nested where we want the UI to nest */}
+        {/* 添加一个路由，嵌套进我们想要嵌套的 UI 里 */}
         <Route path="messages/:id" component={Message} />
       </Route>
     </Route>
@@ -193,17 +193,17 @@ React.render((
 ), document.body)
 ```
 
-Now visits to URLs like `inbox/messages/Jkei3c32` will match the new route and nest the UI branch of `App -> Inbox -> Message`.
+现在访问 URL `inbox/messages/Jkei3c32` 将会匹配到一个新的路由并且嵌套了 `App -> Inbox -> Message` 这个 UI 的分支。
 
-### Getting URL Parameters
+### 获取 URL 参数
 
-We're going to need to know something about the message in order to fetch it from the server. Route components get some useful properties injected into them when you render, particularly the parameters from the dynamic segment of your path. In our case, `:id`.
+我们需要知道一些来自服务器的 message 为了获取它。当你需要渲染的时候，Route 组件会获取一些有用的属性注入其中，尤其是路径中动态部分的参数。就如我们例子中的 `:id`。
 
 ```js
 const Message = React.createClass({
 
   componentDidMount() {
-    // from the path `/inbox/messages/:id`
+    // 来自于路径 `/inbox/messages/:id`
     const id = this.props.params.id
 
     fetchMessage(id, function (err, message) {
@@ -216,8 +216,8 @@ const Message = React.createClass({
 })
 ```
 
-You can also access parameters from the query string. If you for instance visit `/foo?bar=baz`, you can access `this.props.location.query.bar` to get the value `"baz"` from your Route component.
+你也可以通过查询字符串来访问参数。假如你访问 `/foo?bar=baz`，你可以通过访问 `this.props.location.query.bar` 从 Route 组件中获得 `"baz"` 的值。
 
-That's the gist of React Router. Application UIs are boxes inside of boxes inside of boxes; now you can keep those boxes in sync with the URL and link to them easily.
+这些就是 React Router 的要点。应用的 UI 就是盒中盒的形式；现在你可以使这些盒子与 URL 和链接保持同步。
 
-The docs about [route configuration](/docs/guides/basics/RouteConfiguration.md) describe more of the router's features in depth.
+这个关于 [路由配置](/docs/guides/basics/RouteConfiguration.md) 的文档深入地描述了 router 的功能。
