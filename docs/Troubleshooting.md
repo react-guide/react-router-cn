@@ -1,10 +1,10 @@
-# Troubleshooting
+# 排错
 
-### How to get previous path?
+### 如何获得上一次路径？
 
 ```js
 <Route component={App}>
-  {/* ... other routes */}
+  {/* ... 其它 route */}
 </Route>
 
 const App = React.createClass({
