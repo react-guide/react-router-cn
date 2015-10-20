@@ -52,9 +52,9 @@ const App = React.createClass({
 React.render(<App />, document.body)
 ```
 
-作为 URL 变化的散列部分，`<App>` 会渲染从 `this.state.route` 分支而来的不同 `<Child>`。一个很简单的东西，却被弄得如此复杂。
+当 URL 的 hash 部分（指的是 `#` 后的部分）变化后，`<App>` 会根据 `this.state.route` 来渲染不同的 `<Child>`。看直接很直接，但它很容易变得非常复杂。
 
-现在想象一下 `Inbox` 有一些在不同的 URL 下的嵌套 UI，主页的详细视图可能像这样：
+现在设想一下 `Inbox` 下面嵌套一些分别对应于不同 URL 的 UI 组件，就像下面这样的**列表-详情**视图：
 
 ```
 path: /inbox/messages/1234
@@ -74,7 +74,7 @@ path: /inbox/messages/1234
 +--------------+--------------------------------+
 ```
 
-然后这可能是一个不查看 message 时的静态页面：
+还可能有一个状态页，用于在没有选择 message 时展示：
 
 ```
 path: /inbox
@@ -94,9 +94,9 @@ path: /inbox
 +--------------+--------------------------------+
 ```
 
-我们必须让我们的 URL 解析得更智能，然后我们会得到很多的代码去找出给定的 URL 应该是哪一个要被渲染的嵌套组件分支：`App -> About`, `App -> Inbox -> Messages -> Message`, `App -> Inbox -> Messages -> Stats`，等等。
+为了让我们的 URL 解析变得更智能，我们需要编写很多代码来实现指定 URL 应该渲染哪一个嵌套的 UI 组件分支：`App -> About`, `App -> Inbox -> Messages -> Message`, `App -> Inbox -> Messages -> Stats`，等等。
 
-### 使用 React Router
+### 使用 React Router 后
 
 让我们用 React Router 重构这个应用。
 
@@ -141,7 +141,7 @@ React.render((
 ), document.body)
 ```
 
-React Router 知道如何为我们搭建嵌套的 UI，因此我们不用手动地去找出哪些 `<Child>` 组件是用于渲染的。 在内部，router 会将你元素等级的 `<Route>` 转变成一个 [路由配置](/docs/Glossary.md#routeconfig)。但如果你对 JSX 没有研究，那么你可以用普通对象来替代：
+React Router 知道如何为我们搭建嵌套的 UI，因此我们不用手动找出需要渲染哪些 `<Child>` 组件。在内部，router 会将你树级嵌套格式的 `<Route>` 转变成[路由配置](/docs/Glossary.md#routeconfig)。但如果你不熟悉 JSX，你也可以用普通对象来替代：
 
 ```js
 const routes = {
@@ -158,7 +158,7 @@ React.render(<Router routes={routes} />, document.body)
 
 ## 添加更多的 UI
 
-好了，现在我们准备在 inbox UI 内部嵌套 inbox messages。
+好了，现在我们准备在 inbox UI 内嵌套 inbox messages。
 
 ```js
 // 新建一个组件让其在 Inbox 内部渲染
@@ -193,11 +193,13 @@ React.render((
 ), document.body)
 ```
 
-现在访问 URL `inbox/messages/Jkei3c32` 将会匹配到一个新的路由并且嵌套了 `App -> Inbox -> Message` 这个 UI 的分支。
+现在访问 URL `inbox/messages/Jkei3c32` 将会匹配到一个新的路由，并且它成功指向了 `App -> Inbox -> Message` 这个 UI 的分支。
 
 ### 获取 URL 参数
 
-我们需要知道一些来自服务器的 message 为了获取它。当你需要渲染的时候，Route 组件会获取一些有用的属性注入其中，尤其是路径中动态部分的参数。就如我们例子中的 `:id`。
+为了从服务器获取 message 数据，我们首先需要知道它的信息。当渲染组件时，React Router 会自动向 Route 组件中注入一些有用的信息，尤其是路径中动态部分的参数
+
+我们需要知道一些来自服务器的 message 为了获取它。当你需要渲染的时候，Route 组件会获取一些有用的属性注入其中，尤其是 URL 路径中动态部分 所包含的参数。我们的例子中，它指的是 `:id`。
 
 ```js
 const Message = React.createClass({
@@ -216,8 +218,8 @@ const Message = React.createClass({
 })
 ```
 
-你也可以通过查询字符串来访问参数。假如你访问 `/foo?bar=baz`，你可以通过访问 `this.props.location.query.bar` 从 Route 组件中获得 `"baz"` 的值。
+你也可以通过 query 字符串来访问参数。比如你访问 `/foo?bar=baz`，你可以通过访问 `this.props.location.query.bar` 从 Route 组件中获得 `"baz"` 的值。
 
-这些就是 React Router 的要点。应用的 UI 就是盒中盒的形式；现在你可以使这些盒子与 URL 和链接保持同步。
+这就是 React Router 的奥秘。应用的 UI 以盒子中嵌套盒子的方式来表现；然后你可以让这些盒子与 URL 始终保持同步，而且很容易地把它们链接起来。
 
 这个关于 [路由配置](/docs/guides/basics/RouteConfiguration.md) 的文档深入地描述了 router 的功能。
