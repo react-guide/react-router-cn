@@ -1,6 +1,6 @@
-# Basics
+# 基础
 
-* [Route Configuration](RouteConfiguration.md)
-* [Route Matching](RouteMatching.md)
-* [Histories](Histories.md)
-* [Index Routes and Links](IndexRoutes.md)
+* [路由配置](RouteConfiguration.md)
+* [路由匹配原理](RouteMatching.md)
+* [History](Histories.md)
+* [默认路由（IndexRoute）与 IndexLink](IndexRoutes.md)
