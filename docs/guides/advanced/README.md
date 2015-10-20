@@ -1,7 +1,7 @@
-# Advanced Usage
+# 高级用法
 
-* [Dynamic Routing](DynamicRouting.md)
-* [Confirming Navigation](ConfirmingNavigation.md)
-* [Server Rendering](ServerRendering.md)
-* [Component Lifecycle](ComponentLifecycle.md)
-* [Navigating Outside of Components](NavigatingOutsideOfComponents.md)
+* [动态路由](DynamicRouting.md)
+* [跳转前确认](ConfirmingNavigation.md)
+* [服务端渲染](ServerRendering.md)
+* [模块生命周期](ComponentLifecycle.md)
+* [组件外部跳转](NavigatingOutsideOfComponents.md)
