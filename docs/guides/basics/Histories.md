@@ -1,6 +1,7 @@
 # Histories
 
-React Router 是建立在 [history](https://github.com/rackt/history) 之上的。简而言之，一个 history 知道如何去监听浏览器地址栏的变化和解析这个 URL 转化为 `location` 对象，让 router 可以匹配到路由和正确地渲染组件。
+React Router 是建立在 [history](https://github.com/rackt/history) 之上的。  
+简而言之，一个 history 知道如何去监听浏览器地址栏的变化和解析这个 URL 转化为 `location` 对象，让 router 可以匹配到路由和正确地渲染组件。
 
 这是你通常会用到的 history 三种形式，但是要注意的是，任何一种自定义的 history 都要通过 React Router 来实现。 
 
