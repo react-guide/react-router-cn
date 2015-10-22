@@ -1,15 +1,15 @@
 # Histories
 
 React Router 是建立在 [history](https://github.com/rackt/history) 之上的。
-简而言之，一个 history 知道如何去监听浏览器地址栏的变化和解析这个 URL 转化为 `location` 对象，让 router 可以匹配到路由和正确地渲染组件。
+简而言之，一个 history 知道如何去监听浏览器地址栏的变化，并解析这个 URL 转化为 `location` 对象，然后 router 使用它匹配到路由，最后正确地渲染对应的组件。
 
-这是你通常会用到的 history 三种形式，但是要注意的是，任何一种自定义的 history 都要通过 React Router 来实现。 
+常用的 history 有三种形式，但是你也可以使用 React Router 实现自定义的 history。
 
 - [`createHashHistory`](#createhashhistory)
 - [`createBrowserHistory`](#createbrowserhistory)
 - [`createMemoryHistory`](#creatememoryhistory)
 
-从 history 包中获取它们：
+从 history 库中获取它们：
 
 ```js
 // JavaScript 模块导入（译者注：ES6 形式）
@@ -33,7 +33,7 @@ Hash history 是默认的，因为它可以在服务器中不作任何配置就�
 Browser history 是由 React Router 创建浏览器应用推荐的 history。它使用 [History](https://developer.mozilla.org/en-US/docs/Web/API/History) API 在浏览器中被创建用于处理 URL，新建一个像这样真实的 URL `example.com/some/path`。
 
 #### 服务器配置
-你的服务器必须已经准备好处理任何真实的 URL。应用在首次加载 `/` 时就开始工作了，但当用户通过导航然后点击 `/accounts/23` 刷新时，你的 web 服务器就应该从 `/accounts/23` 获得一个请求。你需要用它来处理这些 URL 和包括 JavaScript 应用程序的响应。
+首先服务器应该能够处理 URL 请求。处理应用启动最初的 `/` 这样的请求应该没问题，但当用户来回跳转并在 `/accounts/123` 刷新时，服务器就会收到来自 `/accounts/123`  的请求，这时你需要处理这个 URL 并在响应中包含 JavaScript 程序代码。
 
 一个 express 的应用可能看起来像这样的：
 
