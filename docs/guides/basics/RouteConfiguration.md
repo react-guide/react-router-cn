@@ -61,7 +61,7 @@ React.render((
 
 As configured, this app knows how to render the following 4 URLs:
 
-通过上面的配置，这个应用知道如何渲染下面四个 URL:
+通过上面的配置，这个应用知道如何渲染下面四个 URL：
 
 URL                     | 组件
 ------------------------|-----------
@@ -71,9 +71,9 @@ URL                     | 组件
 `/inbox/messages/:id`   | `App -> Inbox -> Message`
 
 ### Adding an Index
-### 添加一个首页
+### 添加首页
 
-想象一下当 URL 为`/`时，我们想渲染一个在`App`中的组件。不过在此时，`App`的`render`中的 `this.props.children`还是`undefined`。这种情况我们可以使用[`IndexRoute`](/docs/API.md#indexroute)来设置一个默认页面。
+想象一下当 URL 为`/`时，我们想渲染一个在`App`中的组件。不过在此时，`App`的`render`中的 `this.props.children`还是`undefined`。这种情况我们可以使用 [`IndexRoute`](/docs/API.md#indexroute) 来设置一个默认页面。
 
 Imagine we'd like to render another component inside of `App` when the URL is `/`. Currently, `this.props.children` inside of `App`'s `render` method is `undefined` in this case. We can use an [`<IndexRoute>`](/docs/API.md#indexroute) to specify a "default" page.
 
@@ -218,7 +218,7 @@ Continuing with our example above, if a user clicked on a link to `/about` from 
 ### Alternate Configuration
 ### 替换的配置方式
 
-[route](/docs/Glossary.md#route) 一般被嵌套使用，通过使用[JSX](https://facebook.github.io/jsx/)来描述你的路由关系非常的方便。然而如果你不使用 JSX，你也可以使用原生 [route](/docs/Glossary.md#route) 数组对象。
+因为 [route](/docs/Glossary.md#route) 一般被嵌套使用，所以使用 [JSX](https://facebook.github.io/jsx/) 这种天然具有简洁嵌套型语法的结构来描述它们的关系非常方便。然而，如果你不想使用 JSX，也可以直接使用原生 [route](/docs/Glossary.md#route) 数组对象。
 
 Since [routes](/docs/Glossary.md#route) are usually nested, it's useful to use a concise nested syntax like [JSX](https://facebook.github.io/jsx/) to describe their relationship to one another. However, you may also use an array of plain [route](/docs/Glossary.md#route) objects if you prefer to avoid using JSX.
 
