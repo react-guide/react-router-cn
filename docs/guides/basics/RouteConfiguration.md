@@ -67,7 +67,7 @@ URL                     | 组件
 
 ### 添加首页
 
-想象一下当 URL 为`/`时，我们想渲染一个在`App`中的组件。不过在此时，`App`的`render`中的 `this.props.children`还是`undefined`。这种情况我们可以使用 [`IndexRoute`](/docs/API.md#indexroute) 来设置一个默认页面。
+想象一下当 URL 为 `/` 时，我们想渲染一个在 `App` 中的组件。不过在此时，`App` 的 `render` 中的 `this.props.children` 还是 `undefined`。这种情况我们可以使用 [`IndexRoute`](/docs/API.md#indexroute) 来设置一个默认页面。
 
 ```js
 import { IndexRoute } from 'react-router'
@@ -92,7 +92,7 @@ React.render((
 ), document.body)
 ```
 
-现在，`App`的`render`中的 `this.props.children` 将会是 `<Dashboard>`这个元素。这个功能类似 Apache 的[`DirectoryIndex`](http://httpd.apache.org/docs/2.4/mod/mod_dir.html#directoryindex) 以及 nginx的 [`index`](http://nginx.org/en/docs/http/ngx_http_index_module.html#index)指令，上述功能都是在当请求的 URL 匹配某个目录时，允许你制定一个类似`index.html`的入口文件。
+现在，`App` 的 `render` 中的 `this.props.children` 将会是 `<Dashboard>`这个元素。这个功能类似 Apache 的[`DirectoryIndex`](http://httpd.apache.org/docs/2.4/mod/mod_dir.html#directoryindex) 以及 nginx的 [`index`](http://nginx.org/en/docs/http/ngx_http_index_module.html#index)指令，上述功能都是在当请求的 URL 匹配某个目录时，允许你制定一个类似`index.html`的入口文件。
 
 我们的 sitemap 现在看起来如下：
 
@@ -139,7 +139,7 @@ URL                     | 组件
 
 等一下，我们刚刚改变了一个 URL! [这样不好](http://www.w3.org/Provider/Style/URI.html)。 现在任何人访问 `/inbox/message/5` 都会看到一个错误页面。:(
 
-不要担心。我们可以使用 [`<Redirect>`](/docs/API.md#redirect) 去让这个 URL 正常工作起来。
+不要担心。我们可以使用 [`<Redirect>`](/docs/API.md#redirect) 使这个 URL 重新正常工作。
 
 ```js
 import { Redirect } from 'react-router'
@@ -151,6 +151,7 @@ React.render((
       <Route path="about" component={About} />
       <Route path="inbox" component={Inbox}>
         <Route path="/messages/:id" component={Message} />
+
         {/* 跳转 /inbox/messages/:id 到 /messages/:id */}
         <Redirect from="messages/:id" to="/messages/:id" />
       </Route>
@@ -163,11 +164,11 @@ React.render((
 
 ### 进入和离开的Hook
 
-[Route](/docs/Glossary.md#route) 可以定义 [`onEnter`](/docs/Glossary.md#enterhook) 和 [`onLeave`](/docs/Glossary.md#leavehook) 两个hook，这些hook会在页面跳转[确认](/docs/guides/advanced/ConfirmingNavigation.md)时触发一次。这些 hook 对于一些情况非常的有用，例如[权限验证](https://github.com/rackt/react-router/tree/master/examples/auth-flow)或者在路由跳转前将一些数据持久化保存起来。
+[Route](/docs/Glossary.md#route) 可以定义 [`onEnter`](/docs/Glossary.md#enterhook) 和 [`onLeave`](/docs/Glossary.md#leavehook) 两个 hook ，这些hook会在页面跳转[确认](/docs/guides/advanced/ConfirmingNavigation.md)时触发一次。这些 hook 对于一些情况非常的有用，例如[权限验证](https://github.com/rackt/react-router/tree/master/examples/auth-flow)或者在路由跳转前将一些数据持久化保存起来。
 
 在路由跳转过程中，[`onLeave` hook](/docs/Glossary.md#leavehook) 会在所有将离开的路由中触发，从最下层的子路由开始直到最外层父路由结束。然后[`onEnter` hook](/docs/Glossary.md#enterhook)会从最外层的父路由开始直到最下层子路由结束。
 
-继续我们上面的例子，如果一个用户点击链接，从 `/message/5` 跳转到 `/ablout`，下面是这些 hook 的执行顺序：
+继续我们上面的例子，如果一个用户点击链接，从 `/message/5` 跳转到 `/about`，下面是这些 hook 的执行顺序：
 
   - `/messages/:id` 的 `onLeave`
   - `/inbox` 的 `onLeave`
