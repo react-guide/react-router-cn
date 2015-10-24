@@ -8,8 +8,8 @@
 
 为了迎合这一需求，你要在 [`<Router>`](/docs/API.md#Router) API 下一层使用：
 
-- `match` 在渲染之前为 location 匹配 route
-- `RoutingContext` 为了同步 route 组件的渲染
+- 使用 `match` 在渲染之前根据 location 匹配 route
+- 使用 `RoutingContext` 同步渲染 route 组件
 
 它看起来像一个虚拟的 JavaScript 服务器：
 
@@ -35,4 +35,4 @@ serve((req, res) => {
 })
 ```
 
-为了加载数据，你可以用 `renderProps` 去构建任何你想要的约定——例如在 route 组件中添加一个静态的 `load` 方法，或如在 route 中添加数据加载的方法——由你决定。
+至于加载数据，你可以用 `renderProps` 去构建任何你想要的形式——例如在 route 组件中添加一个静态的 `load` 方法，或如在 route 中添加数据加载的方法——由你决定。
