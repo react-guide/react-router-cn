@@ -1,17 +1,17 @@
-# Server Rendering
+# 服务端渲染
 
-Server rendering is a bit different than in a client because you'll want to:
+服务端渲染与客户端渲染有些许不同，因为你会想:
 
-- Send `500` responses for errors
-- Send `30x` responses for redirects
-- Fetch data before rendering (and use the router to help you do it)
+- 发生错误时发送一个 `500` 的响应
+- 需要重定向时发送一个 `30x` 的响应
+- 在渲染之前获得数据 (用 router 帮你完成这点)
 
-To facilitate these needs, you drop one level lower than the [`<Router>`](/docs/API.md#Router) API with:  
+为了迎合这一需求，你要在 [`<Router>`](/docs/API.md#Router) API 下一层使用：
 
-- `match` to match the routes to a location without rendering
-- `RoutingContext` for synchronous rendering of route components
+- 使用 `match` 在渲染之前根据 location 匹配 route
+- 使用 `RoutingContext` 同步渲染 route 组件
 
-It looks something like this with an imaginary JavaScript server:
+它看起来像一个虚拟的 JavaScript 服务器：
 
 ```js
 import { renderToString } from 'react-dom/server'
@@ -19,8 +19,8 @@ import { match, RoutingContext } from 'react-router'
 import routes from './routes'
 
 serve((req, res) => {
-  // Note that req.url here should be the full URL path from
-  // the original request, including the query string.
+  // 注意！这里的 req.url 应该是从初始请求中获得的
+  // 完整的 URL 路径，包括查询字符串。
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {
       res.send(500, error.message)
@@ -35,4 +35,4 @@ serve((req, res) => {
 })
 ```
 
-For data loading, you can use the `renderProps` argument to build whatever convention you want--like adding static `load` methods to your route components, or putting data loading functions on the routes--it's up to you.
+至于加载数据，你可以用 `renderProps` 去构建任何你想要的形式——例如在 route 组件中添加一个静态的 `load` 方法，或如在 route 中添加数据加载的方法——由你决定。
