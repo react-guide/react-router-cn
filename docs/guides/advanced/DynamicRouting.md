@@ -1,18 +1,18 @@
-# Dynamic Routing
+# 动态路由
 
-React Router is great for small sites like [React.js Training](https://reactjs-training.com) ("React Router brought to you by ...") but it's built with websites like [Facebook](https://www.facebook.com/) and [Twitter](https://twitter.com/) in mind, too.
+React Router 适用于小型网站，比如 [React.js Training](https://reactjs-training.com)，也可以支持 [Facebook](https://www.facebook.com/) 和 [Twitter](https://twitter.com/) 这类大型网站。
 
-The primary concern for large apps is the amount of JavaScript required to boot the app. Large apps should download only the JavaScript required to render the current view. Some people call this "code splitting"–you split your code up into multiple bundles that are loaded on-demand as the user navigates around.
+对于大型应用来说，一个首当其冲的问题就是所需加载的 Javascript 的大小。程序应当只加载当前渲染页所需的 Javascript。有些开发者将这种方式称之为'代码分拆' — 将所有的代码分拆成多个小包，在用户浏览过程中按需加载。
 
-It's important that changes deep down in the application don't require changes all the way up top as well. For example, adding a route to the photo viewer should not affect the size of the initial JavaScript bundle the user downloads. Neither should it cause merge conflicts as multiple teams have their fingers in the same, big route configuration file.
+对于底层细节的修改不应该需要它上面每一层级都进行修改。举个例子，为一个照片浏览页添加一个路径不应该影响到首页加载的 Javascript 的大小。也不能因为多个团队共用一个大型的路由配置文件而造成合并时的冲突。
 
-A router is the perfect place to handle code splitting: it's responsible for setting up your views.
+路由是个非常适于做代码分拆的地方：它的责任就是配置好每个 view。
 
-React Router does all of its [path matching](/docs/guides/basics/RouteMatching.md) and component fetching asynchronously, which allows you to not only load up the components lazily, *but also lazily load the route configuration*. You really only need one route definition in your initial bundle, the router can resolve the rest on demand.
+React Router 里的[路径匹配](/docs/guides/basics/RouteMatching.md)以及组件加载都是异步完成的，不仅允许你延迟加载组件，**并且可以延迟加载路由配置**。在首次加载包中你只需要有一个路径定义，路由会自动解析剩下的路径。
 
-Routes may define [`getChildRoutes`](/docs/API.md#getchildrouteslocation-callback), [`getIndexRoute`](/docs/API.md#getindexroutelocation-callback), and [`getComponents`](/docs/API.md#getcomponentslocation-callback) methods. These are asynchronous and only called when needed. We call it "gradual matching". React Router will gradually match the URL and fetch only the amount of route configuration and components it needs to match the URL and render.
+Routes 可以定义 [`getChildRoutes`](/docs/API.md#getchildrouteslocation-callback)， [`getIndexRoute`](/docs/API.md#getindexroutelocation-callback)， 和 [`getComponents`](/docs/API.md#getcomponentslocation-callback) 这几个函数。它们都是异步执行，并且只有在需要时才被调用。我们将这种方式称之为 “逐渐匹配”。 React Router 会逐渐的匹配URL并只加载该URL对应页面所需的路径配置和组件。
 
-Coupled with a smart code splitting tool like [webpack](http://webpack.github.io/), a once tireless architecture is now simple and declarative.
+如果和一个像 [webpack](http://webpack.github.io/) 这样的代码分拆工具组合使用的话，一个原本细致入微的构架可以变得更简洁明了。
 
 ```js
 const CourseRoute = {
@@ -42,6 +42,4 @@ const CourseRoute = {
 }
 ```
 
-Now go look at what hacks you have in place to do this. Just kidding, I don't want to make you sad right now.
-
-Run the [huge apps](https://github.com/rackt/react-router/tree/master/examples/huge-apps) example with your web inspector open and watch code get loaded in as you navigate around the demo.
+运行 [huge apps](https://github.com/rackt/react-router/tree/master/examples/huge-apps) 这个例子试一下，每一个页面的代码都是按需加载的。
