@@ -12,7 +12,7 @@
  * [服务端渲染](/docs/guides/advanced/ServerRendering.md)
  * [模块生命周期](/docs/guides/advanced/ComponentLifecycle.md)
  * [组件外部跳转](/docs/guides/advanced/NavigatingOutsideOfComponents.md)
-* [升级指南](/UPGRADE_GUIDE.md)
+* [升级指南](/docs/UPGRADE_GUIDE.md)
 * [排错](/docs/Troubleshooting.md)
 * [API 文档](/docs/API.md)
 * [词汇表](/docs/Glossary.md)
