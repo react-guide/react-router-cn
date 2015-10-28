@@ -1,32 +1,14 @@
-Upgrade Guide
-=============
-
 升级指南
 =============
 
-To see discussion around these API changes, please refer to the
-[changelog](/CHANGELOG.md) and visit the commits and issues they
-reference.
-
 更多关于 API 升级的细节，请参阅[更新日志](https://github.com/rackt/react-router/blob/master/CHANGELOG.md)，可以查看它们所对应的所有 `commit` 和 `issue`。
-
 
 0.13.3 -> 1.0.0
 ---------------
 
-Thanks for your patience :) Big changes. While on the surface a lot of
-this just looks like shuffling around API, the entire codebase has been
-rewritten to handle some really great use cases, like loading routes and
-components on demand, session-based route matching, server rendering,
-integration with libs like redux and relay, and lots more.
-
-感谢你的耐心等待，终于迎来了这次重大变更。虽然表面上看来只是重写了一些 API，而实际上为了适用于更大型的应用场景，我们几乎重写了整个代码库。新的 API 提供了按需载入路由和组件、基于 session 的路由匹配、服务端渲染、整合 redux 和 relay 库，还有很多。
-
-But for now, here's how to translate the old API to the new one.
+感谢你的耐心等待，终于迎来了这次重大变更。虽然表面上看来只是更新了一些 API，而实际上为了适用于更大型的应用场景，我们几乎重写了整个代码库。新的 API 提供了按需载入路由和组件、基于 session 的路由匹配、服务端渲染、整合 redux 和 relay 库，等等等等。
 
 现在，我们来对比一下新旧 API 的区别。
-
-### Rendering
 
 ### 渲染
 
@@ -39,7 +21,6 @@ Router.run(routes, (Handler) => {
 // v1.0
 React.render(<Router>{routes}</Router>, el)
 
-// looks more like this:
 // 类似这样：
 React.render((
   <Router>
@@ -47,16 +28,11 @@ React.render((
   </Router>
 ), el);
 
-// or if you'd rather
-// 如果你愿意，也可以这样
+// 当然也可以这样
 React.render(<Router routes={routes}/>, el)
 ```
 
-### Locations
 ### Location
-
-Locations are now called histories (that emit locations). You import
-them from the [`history` package](https://github.com/rackt/history), not react router.
 
 现在，location 被叫做 history（它会映射 location）。你需要从 [`history` 包](https://github.com/rackt/history)导入它们，而不是 react-router。
 
@@ -72,20 +48,11 @@ let history = createBrowserHistory()
 React.render(<Router history={history}>{routes}</Router>, el)
 ```
 
-If you do not specify a history type (as in the example above) then you will notice some unusual behaviour after updating to 1.0.0. With the default hash based routing a querystring entry not defined by yourself will start appearing in your URLs called "_k". An example of how it looks is this: `?_k=umhx1s`.  
-
 如果没有指定 history 的类型（就像上面），那你要注意下在升级到 `1.0.0` 后的异常行为。一个并非你所定义的名为 `_k` 的 `querystring` 和路由所需的 `hash` 一并出现在了 URL 的后面。类似这样：`?_k=umhx1s`。
-
-This is intended and part of [createHashHistory](https://github.com/rackt/react-router/blob/master/docs/guides/basics/Histories.md#createhashhistory) (which is the default history approach used if one is not specified). You can read more about the feature [here](https://github.com/rackt/react-router/blob/master/docs/guides/basics/Histories.md#what-is-that-_kckuvup-junk-in-the-url) and how to opt out [here](https://rackt.github.io/history/stable/HashHistoryCaveats.html).
 
 这是有意为之的，它是 [createHashHistory](https://github.com/rackt/react-router/blob/master/docs/guides/basics/Histories.md#createhashhistory) 部分的内容（也是当你没有指定时，默认的 history 方法）。你可以在[这里](https://github.com/rackt/react-router/blob/master/docs/guides/basics/Histories.md#what-is-that-_kckuvup-junk-in-the-url)了解更多关于它的特性，详细的文档在[这里](https://rackt.github.io/history/stable/HashHistoryCaveats.html)。
 
-### Route Config
-
 ### Route 配置
-
-You can still nest your routes as before, paths are inherited from
-parents just like before but prop names have changed.
 
 你依旧可以像上面那样嵌套路由，路径同样也会从父组件继承而来，不过属性名称有变化。
 
@@ -97,19 +64,11 @@ parents just like before but prop names have changed.
 <Route path="about" component={About}/>
 ```
 
-Named routes are gone (for now, [see discussion](https://github.com/rackt/react-router/issues/1840))
-
 具名路由已被移除（现在可以[查看相关的讨论](https://github.com/rackt/react-router/issues/1840)）
-
-### NotFound route
 
 ### NotFound 路由
 
-Not found really confused people, mistaking not finding resources
-from your API for not matching a route. We've removed it completely
-since it's simple with a `*` path.
-
-NotFound 确实搞晕了好多人，搞不清楚是 API 中找不到资源还是没有匹配的路由。因为它仅仅是一个简单的 `*` 路径，我们已经彻底移除了它。
+NotFound 确实搞晕了好多人，搞不清楚是 API 中找不到资源还是没有可匹配的路由。而实际上它仅仅是一个简单的 `*` 路径，我们已经彻底移除了它。
 
 ```js
 // v0.13.x
@@ -119,12 +78,7 @@ NotFound 确实搞晕了好多人，搞不清楚是 API 中找不到资源还是
 <Route path="*" component={NoMatch}/>
 ```
 
-### Redirect route
-
 ### Redirect 路由
-
-- no more params
-- must have absolute `from` (for now)
 
 - 没有增加参数
 - `from` 必须使用绝对路径
@@ -134,7 +88,6 @@ NotFound 确实搞晕了好多人，搞不清楚是 API 中找不到资源还是
 <Redirect from="some/where/:id" to="somewhere/else/:id" params={{id: 2}}/>
 
 // v1.0
-// Works the same as before, except no params, just put them in the path
 // 可以像上面一样正常工作，除了去掉 params 参数，将它们放到了路径当中
 <Redirect from="/some/where/:id" to="/somewhere/else/2"/>
 ```
@@ -143,38 +96,21 @@ NotFound 确实搞晕了好多人，搞不清楚是 API 中找不到资源还是
 
 #### path / params
 
-#### path / params
-
 ```js
 // v0.13.x
 <Link to="user" params={{userId: user.id}}>Mateusz</Link>
 
 // v1.0
-// because named routes are gone, link to full paths, you no longer need
-// to know the names of the parameters, and string templates are quite
-// nice. Note that `query` has not changed.
-// 由于具名路由被移除，链接改为完成路径，你不在需要获取每个参数的名称，同时，字符串插值新特性非常棒。
+// 由于具名路由被移除，链接改为完成路径，你不再需要获取每个参数的名称。同时，字符串插值新特性非常棒。
 // 注意，query 并没有改变。
 <Link to={`/users/${user.id}`}>Mateusz</Link>
 ```
 
-#### "active" class
-
 #### “active” 类
-
-In 0.13.x links added the "active" class by default which you could
-override with `activeClassName`, or provide `activeStyle`s. Most links
-don't need this and the check is (currently) expensive.
 
 在 0.13.x `link` 组件会默认添加 “active” 类，你可以通过 `activeClassName` 重写它，或者提供 `activeStyle`。而事实上，绝大多数 `link` 并不需要它，并且检测起来（目前来看）还是很昂贵的。
 
-Links no longer add the "active" class by default, you opt-in by
-providing one; if no `activeClassName` or `activeStyle`s are provided,
-the link will not check if it's active.
-
 `Link` 不会默认添加 “active” 类，你可以选择增加一个；如果没有 `activeClassName` 或者 `activeStyle`，即便被激活，也不会去检测 `link`。 
-
-
 
 ```js
 // v0.13.x
@@ -184,30 +120,22 @@ the link will not check if it's active.
 <Link to="/about" activeClassName="active">About</Link>
 ```
 
-#### Linking to Index routes
-
 #### 链接到默认路由
-
-Because named routes are gone, a link to `/` with an index route at `/`
-will always be active. So we've introduced `IndexLink` that is only
-active when the index route is active.
 
 由于具名路由被移除，如果默认路由是 `/`，指向 `/` 的 `link` 就会一直处于激活状态。所以，我们介绍的 `IndexLink` 仅仅是当默认路由处于激活状态时。
 
 **Note:** `DefaultRoute` is gone.
 
-**提示：**`DefaultRoute` 已经废弃。
+**注意：**`DefaultRoute` 已经废弃。
 
 ```js
 // v0.13.x
-// with this route config
 // 配置路由
 <Route path="/" handler={App}>
   <DefaultRoute name="home" handler={Home}/>
   <Route name="about" handler={About}/>
 </Route>
 
-// will be active only when home is active, not when about is active
 // 仅仅在 home 被激活是它才会被激活，在 about 激活时则不会
 <Link to="home">Home</Link>
 
@@ -217,17 +145,11 @@ active when the index route is active.
   <Route path="about" component={About}/>
 </Route>
 
-// will be active only when home is active, not when about is active
 // 仅仅在 home 被激活是它才会被激活，在 about 激活时则不会
 <IndexLink to="/">Home</IndexLink>
 ```
 
 ### RouteHandler
-
-### RouteHandler
-
-`RouteHandler` is gone. `Router` now automatically populates
-`this.props.children` of your components based on the active route.
 
 `RouteHandler` 被移除。现在 `Router` 可以基于激活的路由自动填充组件的 `this.props.children`。
 
@@ -242,10 +164,6 @@ active when the index route is active.
 ```
 
 ### Navigation Mixin
-
-### Navigation Mixin
-
-If you were using the `Navigation` mixin, use the `History` mixin instead.
 
 如果你正在用 `Navigation` mixin，那么可以使用 `History` mixin 代替。
 
@@ -263,18 +181,12 @@ var Assignment = React.createClass({
 var Assignment = React.createClass({
   mixins: [ History ],
   navigateAfterSomethingHappened () {
-    // the router is now built on rackt/history, and it is a first class
-    // API in the router for navigating
     // 现在的路由构建于 rackt/history 之上，并且它是路由中用于导航的第一类 API
     this.history.pushState(null, `/users/${user.id}`, query);
     // this.history.replaceState(null, `/users/${user.id}`, query);
   }
 })
 ```
-
-The following `Navigation` methods are now also found on the history
-object, main difference again is there are no params or route names,
-just pathnames.
 
 下面的所有 `Navigation` 方法同样可以在 `history` 对象中找到，主要的区别还是移除了 `params` 以及路由名称，仅仅剩下路径名称。
 
@@ -288,8 +200,6 @@ just pathnames.
 
 ### State mixin
 
-### State mixin
-
 ```js
 // v0.13.x
 var Assignment = React.createClass({
@@ -297,29 +207,21 @@ var Assignment = React.createClass({
   foo () {
     this.getPath()
     this.getParams()
-    // etc...
     // 等...
   }
 })
 
 // v1.0
-// if you are a route component...
 // 如果是一个路由组件...
 <Route component={Assignment} />
 
 var Assignment = React.createClass({
   foo () {
-    this.props.location // contains path information 包含路径信息
-    this.props.params // contains params 包含参数
+    this.props.location // 包含路径信息
+    this.props.params // 包含参数
     this.props.history.isActive
   }
 })
-
-// if you're not a route component, you need to pass location down the
-// tree or get the location from context. We will probably provide a
-// higher order component that will do this for you but haven't yet.
-// see further down for more information on what can be passed down
-// via context
 
 // 如果不是一个路由组件，你需要借助 context 将 location 经组件树传递下去。
 // 我们也可能提供一个更加高阶组件来帮助你完成这个，不过现在还不行。
@@ -334,9 +236,6 @@ var Assignment = React.createClass({
 })
 ```
 
-Here's a table of where you used to get stuff with the `State` mixin,
-and where you get it now if you're a route component (`this.props`)
-
 下面的表格展示了用于替换 `State` mixin 的方法。如果是一个组件路由的话，可以通过 `this.props` 获取到
 
 | v0.13 (this)    | v1.0 (this.props)                  |
@@ -348,9 +247,6 @@ and where you get it now if you're a route component (`this.props`)
 | `getRoutes()`   | `routes`                           |
 | `isActive(to, params, query)` | `history.isActive(pathname, query, onlyActiveOnIndex)` |
 
-Here is another table of properties you used to get via the `State` and 
-where you can get it now if you are **not** a route component (`this.context`).
-
 下面是另外一张表格，展示了在**非**路由组件下借助 `this.context` 替换 `State` mixin 的方法。
 
 | v0.13 (this)    | v1.0 (this.context)                |
@@ -360,25 +256,13 @@ where you can get it now if you are **not** a route component (`this.context`).
 | `getQuery()`    | `location.search`                  |
 | `isActive(to, params, query)` | `history.isActive(pathname, query, onlyActiveOnIndex)` |
 
-Note not all `State` functionality can be accessed via context in v1.0. 
-For example, `params` is not available via context.
-
 注意，在 v1.0 中并非所有的 `State` 特性都可以通过 `context` 访问到。比如，通过 `context` 不能获取到 `params`。
 
 ### Scrolling
 
-In 0.13.x we had a couple of implementations to restore scroll position,
-we've realized that we can build a better implementation on top of the
-router and will be doing that very soon, before the 1.0 final release,
-but it doesn't need to be baked into routing like it was before.
-
 在 0.13.x 中，有两个接口用于还原滚动位置。我们意识到可以在最外层组件创建一个更优雅的实现，并且很快就要去完成，在最终的 1.0 release 之前。不过没必要受到以前路由的约束。
 
-### `willTransitionTo` and `willTransitionFrom`
-
 ### `willTransitionTo` 和 `willTransitionFrom`
-
-Routes now define this behavior:
 
 现在，路由定义了该行为：
 
@@ -401,17 +285,10 @@ var Home = React.createClass({
 />
 ```
 
-To cancel a "transition from", please refer to the
-[Confirming Navigation](docs/guides/advanced/ConfirmingNavigation.md) guide.
-
 想要取消一个“transition from”，请参阅[跳转前确认](docs/guides/advanced/ConfirmingNavigation.md)部分。
-
-### We'll keep updating this
 
 ### 我们将持续更新
 
-There's a lot of the old API we've missed, please give the [new
-docs](/docs) a read and help us fill this guide in. Thanks!
 有很多旧的 API 已被我们舍弃，烦请详读[新的文档](/docs)，帮助我们完善它。感谢！
 
 
