@@ -1,12 +1,13 @@
 # Glossary
+这是React Router库以及文档中常用术语的词汇表，并附有[type signatures（类型签名）](http://flowtype.org/docs/quick-reference.html)，以首字母顺序列出。
 
 This is a glossary of common terms used in the React Router codebase and documentation listed in alphabetical order, along with their [type signatures](http://flowtype.org/docs/quick-reference.html).
 
-* [Action](#action)
-* [Component](#component)
+* [Action（动作）](#action)
+* [Component（组件）](#component)
 * [EnterHook](#enterhook)
 * [LeaveHook](#leavehook)
-* [Location](#location)
+* [Location（）](#location)
 * [LocationKey](#locationkey)
 * [LocationState](#locationstate)
 * [Path](#path)
@@ -24,11 +25,16 @@ This is a glossary of common terms used in the React Router codebase and documen
 * [RouterListener](#routerlistener)
 * [RouterState](#routerstate)
 
-## Action
+## Action（动作）
 
 ```js
 type Action = 'PUSH' | 'REPLACE' | 'POP';
 ```
+*Action（动作）*描述了URL变化的类型。有以下几种类型：
+
+  -  `PUSH` — 表示有一个新条目加入了历史
+  -  `REPLACE` — 表示历史中的当前条目被修改
+  -  `POP` — 表示有一个新的当前条目，即“current pointer（当前指针）”被修改
 
 An *action* describes the type of change to a URL. Possible values are:
 
@@ -36,11 +42,12 @@ An *action* describes the type of change to a URL. Possible values are:
   - `REPLACE` – indicates the current item in history was altered
   - `POP` – indicates there is a new current item, i.e. the "current pointer" changed
 
-## Component
+## Component（组件）
 
 ```js
 type Component = ReactClass | string;
 ```
+这里的“组件”指的是React组件对应的类或者字符串（比如“div”）。基本上，它是任何可以作为第一个参数传入[`React.createElement`](https://facebook.github.io/react/docs/top-level-api.html#react.createelement)的对象。
 
 A *component* is a React component class or a string (e.g. "div"). Basically, it's anything that can be used as the first argument to [`React.createElement`](https://facebook.github.io/react/docs/top-level-api.html#react.createelement).
 
@@ -50,9 +57,16 @@ A *component* is a React component class or a string (e.g. "div"). Basically, it
 type EnterHook = (nextState: RouterState, replaceState: RedirectFunction, callback?: Function) => any;
 ```
 
+*enter hook* 是一个用户定义的函数，当route（路由）将要开始进行渲染之前，它会被调用。它接受下一个[router state](#routerstate)作为第一个参数。第二个参数[`replaceState` function](#redirectfunction)可以被用于触发URL的变化。
+
 An *enter hook* is a user-defined function that is called when a route is about to be rendered. It receives the next [router state](#routerstate) as its first argument. The [`replaceState` function](#redirectfunction) may be used to trigger a transition to a different URL.
 
+
+如果 enter hook 需要异步执行，那么第三个参数 `callback` 可以被用于设置回调，以便变换过程继续进行
+
 If an enter hook needs to execute asynchronously, it may list a 3rd `callback` argument that it must call in order to cause the transition to proceed.
+
+**注意：** 在enter hook中使用 `callback` 会让变换过程一直阻塞，直到 `callback` 被回调。**如果你不能快速地回调的话，这可能会导致整个UI失去响应。**
 
 **Caution:** Using the `callback` in an enter hook causes the transition to wait until it is called. **This can lead to a non-responsive UI if you don't call it very quickly**.
 
@@ -61,6 +75,7 @@ If an enter hook needs to execute asynchronously, it may list a 3rd `callback` a
 ```js
 type LeaveHook = () => any;
 ```
+*leave hook* 是一个用户定义的函数，在离开当前路由之前，它会被调用。
 
 A *leave hook* is a user-defined function that is called when a route is about to be unmounted.
 
