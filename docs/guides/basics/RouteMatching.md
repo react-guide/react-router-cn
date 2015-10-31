@@ -1,31 +1,31 @@
-# Route Matching
+# 路由匹配原理
 
-A [route](/docs/Glossary.md#route) has three attributes that determine whether or not it "matches" the URL:  
+[路由](/docs/Glossary.md#route)拥有三个属性来决定是否“匹配“一个 URL：
 
-1. [nesting](#nesting) and
-2. its [`path`](#path-syntax)
-3. its [precedence](#precedence)
+1. [嵌套关系](#nesting) 和
+2. 它的 [`路径语法`](#path-syntax)
+3. 它的 [优先级](#precedence)
 
-### Nesting
-React Router uses the concept of nested routes to let you declare nested sets of views that should be rendered when a given URL is invoked. Nested routes are arranged in a tree-like structure. To find a match, React Router traverses the [route config](/docs/Glossary.md#routeconfig) depth-first searching for a route that matches the URL.
+### 嵌套关系
+React Router 使用路由嵌套的概念来让你定义 view 的嵌套集合，当一个给定的 URL 被调用时，整个集合中（命中的部分）都会被渲染。嵌套路由被描述成一种树形结构。React Router 会深度优先遍历整个[理由配置](/docs/Glossary.md#routeconfig)来寻找一个与给定的 URL 相匹配的路由。
 
-### Path Syntax
-A route path is [a string pattern](/docs/Glossary.md#routepattern) that is used to match a URL (or a portion of one). Route paths are interpreted literally, except for the following special symbols:
+### 路径语法
+路由路径是匹配一个（或一部分）URL 的 [一个字符串模式](/docs/Glossary.md#routepattern)。大部分的路由路径都可以直接按照字面量理解，除了以下几个特殊的符号：
 
-  - `:paramName` – matches a URL segment up to the next `/`, `?`, or `#`. The matched string is called a [param](/docs/Glossary.md#params)
-  - `()` – Wraps a portion of the URL that is optional
-  - `*` – Matches all characters (non-greedy) up to the next character in the pattern, or to the end of the URL if there is none, and creates a `splat` [param](/docs/Glossary.md#params)
+  - `:paramName` – 匹配一段位于 `/`、`?` 或 `#` 之后的 URL。 命中的部分将被作为一个[参数](/docs/Glossary.md#params) 
+  - `()` – 在它内部的内容被认为是可选的
+  - `*` – 匹配任意字符（非贪婪的）直到命中下一个字符或者整个 URL 的末尾，并创建一个 `splat` [参数](/docs/Glossary.md#params)
 
 ```js
-<Route path="/hello/:name">         // matches /hello/michael and /hello/ryan
-<Route path="/hello(/:name)">       // matches /hello, /hello/michael, and /hello/ryan
-<Route path="/files/*.*">           // matches /files/hello.jpg and /files/path/to/hello.jpg
+<Route path="/hello/:name">         // 匹配 /hello/michael 和 /hello/ryan
+<Route path="/hello(/:name)">       // 匹配 /hello, /hello/michael 和 /hello/ryan
+<Route path="/files/*.*">           // 匹配 /files/hello.jpg 和 /files/path/to/hello.jpg
 ```
 
-If a route uses a relative `path`, it builds upon the accumulated `path` of its ancestors. Nested routes may opt-out of this behavior by [using an absolute `path`](RouteConfiguration.md#decoupling-the-ui-from-the-url).
+如果一个路由使用了相对`路径`，那么完整的路径将由它的所有祖先节点的`路径`和自身指定的相对`路径`拼接而成。[使用绝对`路径`](RouteConfiguration.md#decoupling-the-ui-from-the-url)可以使路由匹配行为忽略嵌套关系。
 
-### Precedence
-Finally, the routing algorithm attempts to match routes in the order they are defined, top to bottom. So, when you have two sibling routes you should be sure the first doesn't match all possible `path`s that can be matched by the later sibling. For example, **don't** do this:
+### 优先级
+最后，路由算法会根据定义的顺序自顶向下匹配路由。因此，当你拥有两个兄弟路由节点配置时，你必须确认前一个理由不会匹配后一个路由中的`路径`。例如，千万**不要**这么做：
 
 ```js
 <Route path="/comments" ... />
