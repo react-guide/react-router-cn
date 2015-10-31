@@ -1,19 +1,19 @@
-# Confirming Navigation
+# 跳转前确认
 
-React Router provides a [`routerWillLeave` lifecycle hook](/docs/Glossary.md#routehook) that React [component](/docs/Glossary.md#component)s may use to prevent a transition from happening or to prompt the user before leaving a [route](/docs/Glossary.md#route). [`routerWillLeave`](/docs/API.md#routerwillleavenextlocation) may either:  
+React Router 提供一个 [`routerWillLeave` 生命周期拦截](/docs/Glossary.md#routehook) 的方法，这使得 React [组件](/docs/Glossary.md#component)可以阻止正在发生的跳转，或在离开 [route](/docs/Glossary.md#route) 前提示用户。[`routerWillLeave`](/docs/API.md#routerwillleavenextlocation) 返回值有以下两种：
 
-1. `return false` to cancel the transition or
-2. `return` a prompt message that will prompt the user for confirmation before leaving the route.
+1. `return false` 取消此次跳转
+2. `return` 返回提示信息，在离开 route 前提示用户进行确认。
 
-To install this hook, use the `Lifecycle` mixin in one of your [route component](/docs/Glossary.md#routecomponent)s.
+在你的一个 [route 组件](/docs/Glossary.md#routecomponent) 中引入 `Lifecycle` mixin 来安装这个钩子。
 
 ```js
 import { Lifecycle } from 'react-router'
 
 const Home = React.createClass({
 
-  // Assuming Home is a route component, it may use the
-  // Lifecycle mixin to get a routerWillLeave method.
+  // 假设 Home 是一个 route 组件，它可能会使用
+  // Lifecycle mixin 去获得一个 routerWillLeave 方法。
   mixins: [ Lifecycle ],
 
   routerWillLeave(nextLocation) {
@@ -26,15 +26,15 @@ const Home = React.createClass({
 })
 ```
 
-If you need a [`routerWillLeave`](/docs/API.md#routerwillleavenextlocation) hook in a deeply nested component, simply use the [`RouteContext`](/docs/API.md#routecontext-mixin) mixin in your [route component](/docs/Glossary.md#routecomponent) to put the `route` in context.
+如果你想在一个深层嵌套的组件中使用 [`routerWillLeave`](/docs/API.md#routerwillleavenextlocation) 钩子，只需在你的 [route 组件](/docs/Glossary.md#routecomponent) 中引入 [`RouteContext`](/docs/API.md#routecontext-mixin) mixin，这样就会把 `route` 放到 context 中。
 
 ```js
 import { Lifecycle, RouteContext } from 'react-router'
 
 const Home = React.createClass({
 
-  // Home should provide its route in context
-  // for descendants further down the hierarchy.
+  // route 会被放到 Home 和它子组件及孙子组件的 context 中，
+  // 这样在层级树中 Home 及其所有下属的子组件都可以拿到 route。
   mixins: [ RouteContext ],
 
   render() {
@@ -45,8 +45,8 @@ const Home = React.createClass({
 
 const NestedForm = React.createClass({
 
-  // Descendants use the Lifecycle mixin to get
-  // a routerWillLeave method.
+  // 后代组件使用 Lifecycle mixin 去获得
+  // 一个 routerWillLeave 的方法。
   mixins: [ Lifecycle ],
 
   routerWillLeave(nextLocation) {

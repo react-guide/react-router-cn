@@ -1,45 +1,53 @@
 # Histories
 
-React Router is built on [history](https://github.com/rackt/history).
-In a nutshell, a history knows how to listen to the browser's address
-bar for changes and parses the URL into a `location` object that the
-router can use to match routes and render the correct set of components.
+React Router 是建立在 [history](https://github.com/rackt/history) 之上的。
+简而言之，一个 history 知道如何去监听浏览器地址栏的变化，
+并解析这个 URL 转化为 `location` 对象，
+然后 router 使用它匹配到路由，最后正确地渲染对应的组件。
 
-There are three types of histories you'll come across most often, but
-note that anyone can build a custom history implementation for
-consumption with React Router.
+常用的 history 有三种形式，
+但是你也可以使用 React Router 
+实现自定义的 history。
 
 - [`createHashHistory`](#createhashhistory)
 - [`createBrowserHistory`](#createbrowserhistory)
 - [`createMemoryHistory`](#creatememoryhistory)
 
-Get them from the history package:
+从 history 库中获取它们：
 
 ```js
-// JavaScript module import
+// JavaScript 模块导入（译者注：ES6 形式）
 import createBrowserHistory from 'history/lib/createBrowserHistory'
-// or commonjs
+// 或者以 commonjs 的形式导入
 const createBrowserHistory = require('history/lib/createBrowserHistory')
 ```
 
 ### `createHashHistory`
-This is the default history you'll get if you don't specify a history at all (i.e. `<Router>{/* your routes */}</Router>`). It uses the hash (`#`) portion of the URL creating routes that look like `example.com/#/some/path`.
+这是一个你会获取到的默认 history ，如果你不指定某个 history （即 `<Router>{/* your routes */}</Router>`）。它用到的是 URL 中的 hash（`#`）部分去创建形如 `example.com/#/some/path` 的路由。
 
-#### Should I use `createHashHistory`?
-Hash history is the default because it works without any setup on your server, and works in all evergreen browsers and IE8+. But, we don't recommend using it in production, every web app should aspire to use `createBrowserHistory`.
+#### 我应该使用 `createHashHistory`吗？
+Hash history 是默认的，因为它可以在服务器中不作任何配置就可以运行，并且它在全部常用的浏览器包括 IE8+ 都可以用。但是我们不推荐在实际生产中用到它，因为每一个 web 应用都应该有目的地去使用 `createBrowserHistory`。
 
-#### What is that `?_k=ckuvup` junk in the URL?
-When a history transitions around your app with `pushState` or `replaceState`, it can store "location state" on the new location that doesn't show up in the URL, think of it a little bit like post data in an HTML form.
+#### 像这样 `?_k=ckuvup` 没用的在 URL 中是什么？
+当一个 history 通过应用程序的 `pushState` 或 `replaceState` 跳转时，它可以在新的 location 中存储 “location state” 而不显示在 URL 中，这就像是在一个 HTML 中 post 的表单数据。
 
-The DOM API that hash history uses to transition around is simply `window.location.hash = newHash`, with no place to store location state.  But, we want all histories to be able to use location state, so we shim it by creating a unique key for each location and then store that state in session storage. When the visitor clicks "back" and "forward" we now have a mechanism to restore the location state.
+在 DOM API 中，这些 hash history 通过 `window.location.hash = newHash` 很简单地被用于跳转，且不用存储它们的location state。但我们想全部的 history 都能够使用location state，因此我们要为每一个 location 创建一个唯一的 key，并把它们的状态存储在 session storage 中。当访客点击“后退”和“前进”时，我们就会有一个机制去恢复这些 location state。
+
+你也可以不使用这个特性 (更多内容点击[这里](http://rackt.org/history/stable/HashHistoryCaveats.html)):
+```js
+// 选择退出连续的 state， 不推荐使用
+let history = createHistory({
+  queryKey: false
+});
+```
 
 ### `createBrowserHistory`
-Browser history is the recommended history for browser application with React Router. It uses the [History](https://developer.mozilla.org/en-US/docs/Web/API/History) API built into the browser to manipulate the URL, creating real URLs that look like `example.com/some/path`.
+Browser history 是由 React Router 创建浏览器应用推荐的 history。它使用 [History](https://developer.mozilla.org/en-US/docs/Web/API/History) API 在浏览器中被创建用于处理 URL，新建一个像这样真实的 URL `example.com/some/path`。
 
-#### Configuring Your Server
-Your server must be ready to handle real URLs. When the app first loads at `/` it will probably work, but as the user navigates around and then hits refresh at `/accounts/23` your web server will get a request to `/accounts/23`. You will need it to handle that URL and include your JavaScript application in the response.
+#### 服务器配置
+首先服务器应该能够处理 URL 请求。处理应用启动最初的 `/` 这样的请求应该没问题，但当用户来回跳转并在 `/accounts/123` 刷新时，服务器就会收到来自 `/accounts/123`  的请求，这时你需要处理这个 URL 并在响应中包含 JavaScript 程序代码。
 
-An express app might look like this:
+一个 express 的应用可能看起来像这样的：
 
 ```js
 const express = require('express')
@@ -47,11 +55,11 @@ const path = require('path')
 const port = process.env.PORT || 8080
 const app = express()
 
-// serve static assets normally
+// 通常用于加载静态资源
 app.use(express.static(__dirname + '/public'))
 
-// handle every other route with index.html, which will contain
-// a script tag to your application's JavaScript file(s).
+// 在你应用 JavaScript 文件中包含了一个 script 标签
+// 的 index.html 中处理任何一个 route
 app.get('*', function (request, response){
   response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })
@@ -60,7 +68,7 @@ app.listen(port)
 console.log("server started on port " + port)
 ```
 
-If you're using nginx, use the [`try_files` directive](http://nginx.org/en/docs/http/ngx_http_core_module.html#try_files):
+如果你的服务器是 nginx，请使用 [`try_files` directive](http://nginx.org/en/docs/http/ngx_http_core_module.html#try_files)：
 
 ```
 server {
@@ -71,17 +79,17 @@ server {
 }
 ```
 
-This lets nginx serve static asset files and serves your `index.html` file when another file isn't found on the server.
+当在服务器上找不到其他文件时，这就会让 nginx 服务器生成静态文件和操作 `index.html` 文件。
 
-#### IE8, IE9 Support
-We feature detect to see if we can use the browser's native `window.history` API. If not, any call to transition around the app will result in _a full page reload_, which allows you to build your app and have a better experience for newer browsers, but still support old ones.
+#### IE8, IE9 支持情况
+如果我们能使用浏览器自带的 `window.history` API，那么我们的特性就可以被浏览器所检测到。如果不能，那么任何调用跳转的应用就会导致 **全页面刷新**，它允许在构建应用和更新浏览器时会有一个更好的用户体验，但仍然支持的是旧版的。
 
-You might wonder why we don't fall back to hash history; the problem is that URLs become non-deterministic. If a visitor on hash history shares a URL with a visitor on browser history, and then they share that back, we end up with a terrible cartesian product of infinite potential URLs.
+你可能会想为什么我们不后退到 hash history，问题是这些 URL 是不确定的。如果一个访客在 hash history 和 browser history 上共享一个 URL，然后他们也共享同一个后退功能，最后我们会以产生笛卡尔积数量级的、无限多的 URL 而崩溃。
 
 ### `createMemoryHistory`
-Memory history doesn't manipulate or read from the address bar. This is how we implement server rendering. It's also useful for testing and other rendering environments (like React Native).
+Memory history 不会在地址栏被操作或读取。这就解释了我们是如何实现服务器渲染的。同时它也非常适合测试和其他的渲染环境（像 React Native ）。
 
-## Example implementation
+## 实现示例
 ```js
 import React from 'react'
 import createBrowserHistory from 'history/lib/createBrowserHistory'

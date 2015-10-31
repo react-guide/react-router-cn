@@ -1,9 +1,8 @@
-# Index Routes and Index Links
+# 默认路由（IndexRoute）与 IndexLink
 
-## Index Routes
+## 默认路由（IndexRoute）
 
-To illustrate the use case for `IndexRoute`, imagine the following route
-config without it:
+在解释 `默认路由(IndexRoute)` 的用例之前，我们来设想一下，一个不使用默认路由的路由配置是什么样的：
 
 ```js
 <Router>
@@ -14,15 +13,15 @@ config without it:
 </Router>
 ```
 
-When the user visits `/`, the App component is rendered, but none of the
-children are, so `this.props.children` inside of `App` will be undefined.
-To render some default UI you could easily do `{this.props.children ||
-<Home/>}`.
+当用户访问 `/` 时, App 组件被渲染，但组件内的子元素却没有，
+`App` 内部的 `this.props.children` 为 undefined 。
+你可以简单地使用 `{this.props.children ||
+<Home/>}` 来渲染一些默认的 UI 组件。
 
-But now `Home` can't participate in routing, like the `onEnter` hooks,
-etc. You render in the same position as `Accounts` and `Statements`, so
-the router allows you have `Home` be a first class route component with
-`IndexRoute`.
+但现在，`Home` 无法参与到比如 `onEnter` hook 这些路由机制中来。 
+在 `Home` 的位置，渲染的是 `Accounts` 和 `Statements`。
+由此，router 允许你使用 `IndexRoute` ，以使 `Home` 作为最高层级的路由出现.
+
 
 ```js
 <Router>
@@ -34,14 +33,13 @@ the router allows you have `Home` be a first class route component with
 </Router>
 ```
 
-Now `App` can render `{this.props.children}` and we have a first-class
-route for `Home` that can participate in routing.
+现在 `App` 能够渲染 `{this.props.children}` 了，
+我们也有了一个最高层级的路由，使 `Home` 可以参与进来。
 
 ## Index Links
 
-If you were to `<Link to="/">Home</Link>` in this app, it would always
-be active since every URL starts with `/`. This is a problem because
-we'd like to link to `Home` but only be active if `Home` is rendered.
+如果你在这个app中使用 `<Link to="/">Home</Link>` , 
+它会一直处于激活状态，因为所有的 URL 的开头都是 `/` 。
+这确实是个问题，因为我们仅仅希望在 `Home` 被渲染后，激活并链接到它。
 
-To have a link to `/` that is only active when the `Home` route is
-rendered, use `<IndexLink to="/">Home</IndexLink>`.
+如果需要在 `Home` 路由被渲染后才激活的指向 `/` 的链接，请使用 `<IndexLink to="/">Home</IndexLink>`

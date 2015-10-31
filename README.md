@@ -6,7 +6,7 @@
 
 英文原版：https://github.com/rackt/react-router/tree/master/docs
 
-**翻译正在进行中，[加入我们](https://github.com/react-guide/translation-guide)**
+**翻译正在进行中，欢迎认领[Issue](https://github.com/react-guide/react-router-cn/issues)，这里是[翻译规范](https://github.com/react-guide/ETC)**
 
 React Router 是完整的 React 路由解决方案
 
