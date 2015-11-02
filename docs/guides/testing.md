@@ -7,11 +7,11 @@ React Router Testing With Jest
 - [Jest ReactJS docs](https://facebook.github.io/jest/docs/tutorial-react.html)
 - [ReactJS TestUtils docs](https://facebook.github.io/react/docs/test-utils.html)
 
-可以使用 React-Router 1.x 进行测试。但如果你有以下的问题。许多用户有这类问题，是因为之前配置从 react-router 0.x 升级了而造成的。
+在 React-Router 1.x 中编写测试会很顺利。如果遇到问题，后面会有解法。很多用户在升级旧的 react-router 0.x 项目时会遇到一些问题。
 
 从 React-Router 0.x 到 1.x 带来的测试配置更新
 ----------------------------------------------
-首先，确保每个你正在使用的包，至少是以下这些版本的：
+首先，确保你使用的包至少是以下版本：
 - `"react": "^0.14.0"`
 - `"react-dom": "^0.14.0"`
 - `"react-router": "^1.0.0"`
@@ -42,7 +42,7 @@ var ReactDOM = require('react-dom');
 var React = require('react');
 ```
 
-确保你做了 npm clean、install 等等操作。并且确保在你的非模拟路径上添加了 react-addons-test-utils 和 react-dom to your 。
+确保你做了 npm clean、install 等等操作。并且确保在你的非模拟路径上添加了 react-addons-test-utils 和 react-dom。
 
 ```json
   ...
@@ -55,7 +55,7 @@ var React = require('react');
 
 ```
 
-最后，在脚本预处理之前保证你使用了 babel-jest：
+最后，确保使用 babel-jest 做为脚本预处理工具
 
 ```js
   ...
