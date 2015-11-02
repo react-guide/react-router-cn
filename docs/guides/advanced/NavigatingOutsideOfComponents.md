@@ -1,13 +1,13 @@
-# Navigating Outside of Components
+# 在组件外部使用导航
 
-While route components get `this.props.history` and the `History` mixin
-provides `this.history`, many apps want to be able to navigate outside
-of their components.
+虽然在路由组件内部，可以获取 `this.props.history` 来实现导航。也可以引入 `History` mixin，并用它提供的
+ `this.history` 来实现导航。然而，很多应用仍然希望可以在他们的组件外部使用导航功能。
 
-Its pretty simple, just hang on to your history object:
 
-You can have a module in your app somewhere that exports your history
-object.
+这个非常简单，要做的就是拿到你的 history 对象：
+
+你可以在应用的任何地方，创建一个模块来输出你的 history 对象。
+
 
 ```js
 // history.js
@@ -15,7 +15,7 @@ import createBrowserHistory from 'history/lib/createBrowserHistory'
 export default createBrowserHistory()
 ```
 
-And then import it to render a `<Router>`:
+然后引入这个模块渲染一个 `<Router>`:
 
 ```js
 // index.js
@@ -23,8 +23,8 @@ import history from './history'
 React.render(<Router history={history}/>, el)
 ```
 
-And now you can use that history object anywhere in your app, maybe in a
-flux actions file
+现在你可以在应用的其他地方使用这个 history 对象了，例如一个 flux action 文件
+
 
 ```js
 // actions.js
