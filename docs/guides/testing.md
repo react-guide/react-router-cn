@@ -1,17 +1,17 @@
 React Router Testing With Jest
 ====================
-Testing has become much easier since React Router version 1.x. For Testing prior React Router versions, see   [Old testing docs](https://github.com/rackt/react-router/blob/57543eb41ce45b994a29792d77c86cc10b51eac9/docs/guides/testing.md).
+自从 React Router 1.x 版本的发布，测试就变得简单多了。想知道 React Router 以前版本的测试，请看 [旧的测试文档](https://github.com/rackt/react-router/blob/57543eb41ce45b994a29792d77c86cc10b51eac9/docs/guides/testing.md)。
 
-It is recommended that you read the following two tutorials prior:
+在开始之前，建议你阅读以下前两个教程：
 - [Jest Getting Started docs](https://facebook.github.io/jest/docs/getting-started.html)
 - [Jest ReactJS docs](https://facebook.github.io/jest/docs/tutorial-react.html)
 - [ReactJS TestUtils docs](https://facebook.github.io/react/docs/test-utils.html)
 
-Testing with React-Router 1.x should just work. But if you are having issues see the following. Many users had issues when upgrading prior setups from react-router 0.x.
+在 React-Router 1.x 中编写测试会很顺利。如果遇到问题，后面会有解法。很多用户在升级旧的 react-router 0.x 项目时会遇到一些问题。
 
-Updating from testing setup from React-Router 0.x to 1.x
+从 React-Router 0.x 到 1.x 带来的测试配置更新
 ----------------------------------------------
-Firstly, ensure you are using at least the following versions of each package.
+首先，确保你使用的包至少是以下版本：
 - `"react": "^0.14.0"`
 - `"react-dom": "^0.14.0"`
 - `"react-router": "^1.0.0"`
@@ -19,22 +19,22 @@ Firstly, ensure you are using at least the following versions of each package.
 - `"jest-cli": "^0.5.10"`
 - `"babel-jest": "^5.3.0"`
 
-Also, make sure you are using node 4.x
+另外，确保你使用的是 node 4.x
 
-In prior setups, react-tools was needed. This is not longer the case. You will need to remove it from your package.json and environment.
+在以前的配置中，react-tools 是必须的。但现在不是了。你要把它从 package.json 和环境中删除。
 
 ```json
 "react-tools": "~0.13.3",
 ```
 
-Lastly, anywhere you have the following, needs to be replaced with this:
+最后，你有任何类似如下的，需要将：
 
 ```js
 var React = require('react/addons');
 var TestUtils = React.addons.TestUtils;
 ```
 
-with this:
+替换成：
 
 ```js
 var TestUtils = require('react-addons-test-utils');
@@ -42,7 +42,7 @@ var ReactDOM = require('react-dom');
 var React = require('react');
 ```
 
-Make sure you do an npm clean, install, etc. and make sure you add react-addons-test-utils and react-dom to your unmocked paths.
+确保你做了 npm clean、install 等等操作。并且确保在你的非模拟路径上添加了 react-addons-test-utils 和 react-dom。
 
 ```json
   ...
@@ -55,7 +55,7 @@ Make sure you do an npm clean, install, etc. and make sure you add react-addons-
 
 ```
 
-Lastly ensure you are using babel-jest for the script preproccessor:
+最后，确保使用 babel-jest 做为脚本预处理工具
 
 ```js
   ...
@@ -64,9 +64,9 @@ Lastly ensure you are using babel-jest for the script preproccessor:
 ```
 
 
-Example:
+示例：
 ----------------------------------------------
-A component:
+一个组件：
 ```js
 //../components/BasicPage.js
 
@@ -109,13 +109,13 @@ let BasicPage =
 module.exports = BasicPage;
 ```
 
-The test for that component:
+测试该组件：
 ```js
 //../components/__tests__/BasicPage-test.js
 
-// NOTE: cannot use es6 modules syntax because
+// 注意：不能使用 es6 模块的语法，因为
 // jest.dontMock & jest.autoMockOff()
-// do not understand ES6 modules yet
+// 还不支持 ES6 模块
 
 jest.dontMock('../BasicPage');
 
