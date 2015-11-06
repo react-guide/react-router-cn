@@ -1,7 +1,7 @@
 升级指南
 =============
 
-更多关于 API 升级的细节，请参阅[更新日志](https://github.com/rackt/react-router/blob/master/CHANGELOG.md)，可以查看它们所对应的所有 `commit` 和 `issue`。
+更多关于 API 升级的细节，请参阅[更新日志](https://github.com/rackt/react-router/blob/master/CHANGELOG.md)，可以查看所有相关的 `commit` 和 `issue`。
 
 0.13.3 -> 1.0.0
 ---------------
