@@ -124,8 +124,6 @@ NotFound 确实搞晕了好多人，搞不清楚是 API 中找不到资源还是
 
 由于具名路由被移除，如果默认路由是 `/`，指向 `/` 的 `link` 就会一直处于激活状态。所以，我们介绍的 `IndexLink` 仅仅是当默认路由处于激活状态时。
 
-**Note:** `DefaultRoute` is gone.
-
 **注意：**`DefaultRoute` 已经废弃。
 
 ```js
