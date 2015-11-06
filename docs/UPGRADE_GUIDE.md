@@ -1,7 +1,7 @@
 升级指南
 =============
 
-更多关于 API 升级的细节，请参阅[更新日志](https://github.com/rackt/react-router/blob/master/CHANGELOG.md)，可以查看它们所对应的所有 `commit` 和 `issue`。
+更多关于 API 升级的细节，请参阅[更新日志](https://github.com/rackt/react-router/blob/master/CHANGELOG.md)，可以查看所有相关的 `commit` 和 `issue`。
 
 0.13.3 -> 1.0.0
 ---------------
@@ -123,8 +123,6 @@ NotFound 确实搞晕了好多人，搞不清楚是 API 中找不到资源还是
 #### 链接到默认路由
 
 由于具名路由被移除，如果默认路由是 `/`，指向 `/` 的 `link` 就会一直处于激活状态。所以，我们介绍的 `IndexLink` 仅仅是当默认路由处于激活状态时。
-
-**Note:** `DefaultRoute` is gone.
 
 **注意：**`DefaultRoute` 已经废弃。
 

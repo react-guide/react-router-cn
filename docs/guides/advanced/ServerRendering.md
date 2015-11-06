@@ -1,6 +1,6 @@
 # 服务端渲染
 
-服务端渲染与客户端渲染有些许不同，因为你会想:
+服务端渲染与客户端渲染有些许不同，因为你需要：
 
 - 发生错误时发送一个 `500` 的响应
 - 需要重定向时发送一个 `30x` 的响应
@@ -8,7 +8,7 @@
 
 为了迎合这一需求，你要在 [`<Router>`](/docs/API.md#Router) API 下一层使用：
 
-- 使用 `match` 在渲染之前根据 location 匹配 route
+- 使用 [`match`](/docs/API.md#matchlocation-cb) 在渲染之前根据 location 匹配 route
 - 使用 `RoutingContext` 同步渲染 route 组件
 
 它看起来像一个虚拟的 JavaScript 服务器：
