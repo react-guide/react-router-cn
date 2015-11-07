@@ -23,7 +23,7 @@
 * [RouterListener](#routerlistener)
 * [RouterState](#routerstate)
 
-## Action（动作）
+## Action
 
 ```js
 type Action = 'PUSH' | 'REPLACE' | 'POP';
@@ -34,7 +34,7 @@ type Action = 'PUSH' | 'REPLACE' | 'POP';
   -  `REPLACE` — 表示 history 中的当前条目被修改
   -  `POP` — 表示有一个新的当前条目，例如“current pointer（当前指针）”被修改
 
-## Component（组件）
+## Component
 
 ```js
 type Component = ReactClass | string;
@@ -104,14 +104,14 @@ type LocationState = ?Object;
 [pushState]: https://developer.mozilla.org/en-US/docs/Web/API/History_API#The_pushState()_method
 [replaceState]: https://developer.mozilla.org/en-US/docs/Web/API/History_API#The_replaceState()_method
 
-## Path（路径）
+## Path
 
 ```js
 type Path = Pathname + QueryString;
 ```
 *path（路径）* 代表URL的路径。
 
-## Pathname（路径名）
+## Pathname
 
 ```js
 type Pathname = string;
@@ -137,7 +137,7 @@ type Query = Object;
 *query* 是 [query string](#querystring) 解析后的版本。
 
 
-## Params（参数）
+## Params
 
 ```js
 type Params = Object;
@@ -145,7 +145,7 @@ type Params = Object;
 
 *params（参数）* 指的是由URL中的 [pathname（路径名）](#pathname) 经过解析之后生成的键/值对。它的值在通常情况下是字符串类型，只有当一个键对应了多个值时，才可以是数组。
 
-## RedirectFunction（重定向函数）
+## RedirectFunction
 
 ```js
 type RedirectFunction = (state: ?LocationState, pathname: Pathname | Path, query: ?Query) => void;
@@ -154,7 +154,7 @@ type RedirectFunction = (state: ?LocationState, pathname: Pathname | Path, query
 *redirect function（重定向函数）* 在 [`onEnter` hooks](#enterhook) 中被用于触发跳转到新的URL。
 
 
-## Route（路由）
+## Route
 
 ```js
 type Route = {
@@ -171,7 +171,7 @@ type Route = {
 它或许有助于让你把路由看做整个 UI 的“入口”。当然，你不需要为组件层中的每个组件都设置路由，只需要为那些因 URL 变化而不同的组件设置即可。
 
 
-## RouteComponent（路由组件）
+## RouteComponent
 
 ```js
 type RouteComponent = Component;
@@ -185,7 +185,7 @@ type RouteComponent = Component;
   - `route` – 声明了这个组件的 [route（路由）](#route)
   - `routeParams` – 在路由的 [`path`](#routepattern) 中指定参数的集合
 
-## RouteConfig（路由配置）
+## RouteConfig
 
 ```js
 type RouteConfig = Array<Route>;
@@ -218,7 +218,7 @@ type RoutePattern = string;
 
 Route pattern 都是是相对于parent route（父路由）而言的，除非是以 `/` 开头，才会从URL的开头进行匹配。
 
-## Router（路由器）
+## Router
 
 ```js
 type Router = {
@@ -262,4 +262,4 @@ type RouterState = {
   - 当前的 [`location`](#location)
   - 匹配当前 location 的 [`routes（路由）`](#route) 的数组
   - 由 URL 解析生成的 [`params（参数）`](#params) 对象
-  - 将会按照层级顺序被渲染在当前页的 [`components（组件）`](#component) 的数组
+  - 当前页渲染的 [`components（组件）`](#component) 组成的数组，并按照层级排列。
