@@ -10,7 +10,7 @@
  * [动态路由](/docs/guides/advanced/DynamicRouting.md)
  * [跳转前确认](/docs/guides/advanced/ConfirmingNavigation.md)
  * [服务端渲染](/docs/guides/advanced/ServerRendering.md)
- * [模块生命周期](/docs/guides/advanced/ComponentLifecycle.md)
+ * [组件生命周期](/docs/guides/advanced/ComponentLifecycle.md)
  * [组件外部跳转](/docs/guides/advanced/NavigatingOutsideOfComponents.md)
 * [升级指南](/UPGRADE_GUIDE.md)
 * [排错](/docs/Troubleshooting.md)
