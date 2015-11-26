@@ -18,49 +18,49 @@
 
 ### 路由切换时，组件生命周期的变化情况
 
-1. 当用户打开应用的 '/' 页面
+#### 1. 当用户打开应用的 '/' 页面
 
-    | 组件 | 生命周期 |
-    |-----------|------------------------|
-    | App | `componentDidMount` |
-    | Home | `componentDidMount` |
-    | Invoice | N/A |
-    | Account | N/A |
+| 组件 | 生命周期 |
+|-----------|------------------------|
+| App | `componentDidMount` |
+| Home | `componentDidMount` |
+| Invoice | N/A |
+| Account | N/A |
 
-2. 当用户从 '/' 跳转到 '/invoice/123'
+#### 2. 当用户从 '/' 跳转到 '/invoice/123'
 
-    | 组件 | 生命周期 |
-    |-----------|------------------------|
-    | App | `componentWillReceiveProps`, `componentDidUpdate` |
-    | Home | `componentWillUnmount` |
-    | Invoice | `componentDidMount` |
-    | Account | N/A |
+| 组件 | 生命周期 |
+|-----------|------------------------|
+| App | `componentWillReceiveProps`, `componentDidUpdate` |
+| Home | `componentWillUnmount` |
+| Invoice | `componentDidMount` |
+| Account | N/A |
 
-    - `App` 从 router 中接收到新的 props（例如 `children`、`params`、`location` 等数据),
-    所以 `App` 触发了 `componentWillReceiveProps` 和 `componentDidUpdate` 两个生命周期方法
-    - `Home` 不再被渲染，所以它将被移除
-    - `Invoice` 首次被挂载
+- `App` 从 router 中接收到新的 props（例如 `children`、`params`、`location` 等数据),
+所以 `App` 触发了 `componentWillReceiveProps` 和 `componentDidUpdate` 两个生命周期方法
+- `Home` 不再被渲染，所以它将被移除
+- `Invoice` 首次被挂载
 
-3. 当用户从 `/invoice/123` 跳转到 `/invoice/789`
+#### 3. 当用户从 `/invoice/123` 跳转到 `/invoice/789`
 
-    | 组件 | 生命周期|
-    |-----------|------------------------|
-    | App | componentWillReceiveProps, componentDidUpdate |
-    | Home | N/A |
-    | Invoice | componentWillReceiveProps, componentDidUpdate |
-    | Account | N/A |
+| 组件 | 生命周期|
+|-----------|------------------------|
+| App | componentWillReceiveProps, componentDidUpdate |
+| Home | N/A |
+| Invoice | componentWillReceiveProps, componentDidUpdate |
+| Account | N/A |
 
-    所有的组件之前都已经被挂载，
-    所以只是从 router 更新了 props.
+所有的组件之前都已经被挂载，
+所以只是从 router 更新了 props.
 
-4. 当从 `/invoice/789` 跳转到 `/accounts/123`
+#### 4. 当从 `/invoice/789` 跳转到 `/accounts/123`
 
-    | 组件 | 生命周期|
-    |-----------|------------------------|
-    | App | componentWillReceiveProps, componentDidUpdate |
-    | Home | N/A |
-    | Invoice | componentWillUnmount |
-    | Account | componentDidMount |
+| 组件 | 生命周期|
+|-----------|------------------------|
+| App | componentWillReceiveProps, componentDidUpdate |
+| Home | N/A |
+| Invoice | componentWillUnmount |
+| Account | componentDidMount |
 
 ### 获取数据
 
