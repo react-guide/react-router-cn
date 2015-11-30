@@ -6,8 +6,6 @@
 
 英文原版：https://github.com/rackt/react-router/tree/master/docs
 
-**翻译正在进行中，欢迎认领[Issue](https://github.com/react-guide/react-router-cn/issues)，这里是[翻译规范](https://github.com/react-guide/ETC)**
-
 React Router 是完整的 React 路由解决方案
 
 React Router 保持 UI 与 URL 同步。它拥有简单的 API 与强大的功能例如代码缓冲加载、动态路由匹配、以及建立正确的位置过渡处理。你第一个念头想到的应该是 URL，而不是事后再想起。
@@ -138,3 +136,6 @@ React.render((
 React Router 灵感来源于 Ember's fantastic router。非常感谢 Ember 团队。
 
 同时，也感谢 [BrowserStack](https://www.browserstack.com/) 提供一个平台让我们能在真实的浏览器中运行我们的项目。
+
+
+**本文档翻译流程符合 [ETC 翻译规范](https://github.com/react-guide/ETC)，欢迎你来一起完善**
