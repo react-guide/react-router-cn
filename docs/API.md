@@ -4,7 +4,7 @@
   - [Router](#router)
   - [Link](#link)
   - [IndexLink](#indexlink)
-  - [RoutingContext](#routingcontext)  
+  - [RoutingContext](#routingcontext)
 
 * [Configuration Components](#configuration-components)
   - [Route](#route)
@@ -13,15 +13,17 @@
   - [IndexRoute](#indexroute)
   - [IndexRedirect](#indexredirect)
 
-* [Handler Components](#handler-components)
+* [Route Components](#route-components)
+  - [Named Components](#named-components)
 
 * [Mixins](#mixins)
   - [Lifecycle](#lifecycle-mixin)
   - [History](#history-mixin)
-  - [RouteContext](#routecontext-mixin)  
+  - [RouteContext](#routecontext-mixin)
 
 * [Utilities](#utilities)
   * [useRoutes](#useroutescreatehistory)
+  * [match](#matchlocation-cb)
   * [createRoutes](#createroutesroutes)
   * [PropTypes](#proptypes)
 
@@ -42,7 +44,7 @@ Alias for `children`.
 The history the router should listen to from the `history` package.
 
 ##### `createElement(Component, props)`
-When the router is ready to render a branch of route components, it will use this function to create the elements. You may want to take control of creating the elements when you're using some sort of data abstraction, like setting up subscriptions to stores, or passing in some sort of application module to each component via props.  
+When the router is ready to render a branch of route components, it will use this function to create the elements. You may want to take control of creating the elements when you're using some sort of data abstraction, like setting up subscriptions to stores, or passing in some sort of application module to each component via props.
 
 ```js
 <Router createElement={createElement} />
@@ -68,7 +70,7 @@ A function used to convert an object from [`Link`](#link)s or calls to
 A function used to convert a query string into an object that gets passed to route component props.
 
 ##### `onError(error)`
-While the router is matching, errors may bubble up, here is your opportunity to catch and deal with them. Typically these will come from async features like [`route.getComponents`](#getcomponentscallback), [`route.getIndexRoute`](#getindexroutecallback), and [`route.getChildRoutes`](#getchildrouteslocation-callback).
+While the router is matching, errors may bubble up, here is your opportunity to catch and deal with them. Typically these will come from async features like [`route.getComponents`](#getcomponentslocation-callback), [`route.getIndexRoute`](#getindexroutelocation-callback), and [`route.getChildRoutes`](#getchildrouteslocation-callback).
 
 ##### `onUpdate()`
 Called whenever the router updates its state in response to URL changes.
@@ -93,6 +95,8 @@ An object of key:value pairs to be stringified.
 ##### `hash`
 A hash to put in the URL, e.g. `#a-hash`.
 
+_Note: React Router currently does not manage scroll position, and will not scroll to the element corresponding to the hash. Scroll position management utilities are available in the [scroll-behavior](https://github.com/rackt/scroll-behavior) library._
+
 ##### `state`
 State to persist to the `location`.
 
@@ -103,7 +107,7 @@ The className a `<Link>` receives when its route is active. No active class by d
 The styles to apply to the link element when its route is active.
 
 ##### `onClick(e)`
-A custom handler for the click event. Works just like a handler on an `<a>` tag - calling `e.preventDefault()` or returning `false` will prevent the transition from firing, while `e.stopPropagation()` will prevent the event from bubbling.
+A custom handler for the click event. Works just like a handler on an `<a>` tag - calling `e.preventDefault()` will prevent the transition from firing, while `e.stopPropagation()` will prevent the event from bubbling.
 
 ##### *others*
 You can also pass props you'd like to be on the `<a>` such as a `title`, `id`, `className`, etc.
@@ -175,16 +179,15 @@ class App extends React.Component {
 ```
 
 ##### `components`
-Routes can define multiple components as an object of `name:component`
+Routes can define one or more named components as an object of `name:component`
 pairs to be rendered when the path matches the URL. They can be rendered
-by the parent route component with `this.props.children[name]`.
+by the parent route component with `this.props[name]`.
 
 ```js
-// think of it outside the context of the router, if you had pluggable
-// portions of your `render`, you might do it like this
-<App children={{main: <Users/>, sidebar: <UsersSidebar/>}}/>
+// Think of it outside the context of the router - if you had pluggable
+// portions of your `render`, you might do it like this:
+// <App main={<Users />} sidebar={<UsersSidebar />} />
 
-// So with the router it looks like this:
 const routes = (
   <Route component={App}>
     <Route path="groups" components={{main: Groups, sidebar: GroupsSidebar}}/>
@@ -196,7 +199,7 @@ const routes = (
 
 class App extends React.Component {
   render () {
-    const { main, sidebar } = this.props.children
+    const { main, sidebar } = this.props
     return (
       <div>
         <div className="Main">
@@ -255,8 +258,10 @@ code-splitting.
 ##### `children`
 Routes can be nested, `this.props.children` will contain the element created from the child route component. Please refer to the [Route Configuration](/docs/guides/basics/RouteConfiguration.md) since this is a very critical part of the router's design.
 
-##### `onEnter(nextState, replaceState)`
-Called when a route is about to be entered. It provides the next router state and a function to redirect to another path.
+##### `onEnter(nextState, replaceState, callback?)`
+Called when a route is about to be entered. It provides the next router state and a function to redirect to another path. `this` will be the route instance that triggered the hook.
+
+If `callback` is listed as a 3rd argument, this hook will run asynchronously, and the transition will block until `callback` is called.
 
 ##### `onLeave()`
 Called when a route is about to be exited.
@@ -313,6 +318,37 @@ let myRoute = {
 }
 ```
 
+##### `indexRoute`
+The [index route](/docs/guides/basics/IndexRoutes.md). This is the same as specifying an `<IndexRoute>` child when using JSX route configs.
+
+##### `getIndexRoute(location, callback)`
+
+Same as `indexRoute`, but asynchronous and receives the `location`. As with `getChildRoutes`, this can be useful for code-splitting and dynamic route matching.
+
+###### `callback` signature
+`cb(err, route)`
+
+```js
+// For example:
+let myIndexRoute = {
+  component: MyIndex
+}
+
+let myRoute = {
+  path: 'courses',
+  indexRoute: myIndexRoute
+}
+
+// async index route
+let myRoute = {
+  path: 'courses',
+  getIndexRoute(location, cb) {
+    // do something async here
+    cb(null, myIndexRoute)
+  }
+}
+```
+
 
 
 ## Redirect
@@ -360,19 +396,6 @@ Please see the [Index Routes guide](/docs/guides/basics/IndexRoutes.md).
 #### Props
 All the same props as [Route](#route) except for `path`.
 
-##### `getIndexRoute(location, callback)`
-Same as `IndexRoute` but asynchronous, useful for
-code-splitting.
-
-###### `callback` signature
-`cb(err, component)`
-
-```js
-<Route path="courses/:courseId" getIndexRoute={(location, cb) => {
-  // do asynchronous stuff to find the index route
-  cb(null, myIndexRoute)
-}}/>
-```
 
 
 ## IndexRedirect
@@ -383,15 +406,17 @@ for its parent, while still keeping a distinct URL.
 Please see the [Index Routes guide](/docs/guides/basics/IndexRoutes.md).
 
 #### Props
-All the same props as [Redirect](./Redirect.md) except for `from`.
+All the same props as [Redirect](#redirect) except for `from`.
 
 
 
-## Handler Components
-A route's handler component is rendered when that route matches the URL. The router will inject the following properties into your component when it's rendered:
+## Route Components
+A route's component is rendered when that route matches the URL. The router will inject the following properties into your component when it's rendered:
 
-#### `isTransitioning`
-A boolean value that is `true` when the router is transitioning, `false` otherwise.
+#### `history`
+The Router's history [history](https://github.com/rackt/history/blob/master/docs).
+
+Useful mostly for transitioning around with `this.props.history.pushState(state, path, query)`
 
 #### `location`
 The current [location](https://github.com/rackt/history/blob/master/docs/Location.md).
@@ -406,12 +431,12 @@ The route that rendered this component.
 A subset of `this.props.params` that were directly specified in this component's route. For example, if the route's path is `users/:userId` and the URL is `/users/123/portfolios/345` then `this.props.routeParams` will be `{userId: '123'}`, and `this.props.params` will be `{userId: '123', portfolioId: 345}`.
 
 #### `children`
-The matched child route elements to be rendered.
+The matched child route element to be rendered. If the route has [named components](https://github.com/rackt/react-router/blob/master/docs/API.md#named-components) then this will be undefined, and the components will instead be available as direct properties on `this.props`.
 
 ##### Example
 ```js
-React.render((
-  <Router history={history}>
+render((
+  <Router>
     <Route path="/" component={App}>
       <Route path="groups" component={Groups} />
       <Route path="users" component={Users} />
@@ -432,11 +457,11 @@ class App extends React.Component {
 ```
 
 ### Named Components
-When a route has multiple components, the child elements are available by name on `this.props.children`. All route components can participate in the nesting.
+When a route has one or more named components, the child elements are available by name on `this.props`. In this case `this.props.children` will be undefined. All route components can participate in the nesting.
 
 #### Example
 ```js
-React.render((
+render((
   <Router>
     <Route path="/" component={App}>
       <Route path="groups" components={{main: Groups, sidebar: GroupsSidebar}} />
@@ -454,11 +479,11 @@ class App extends React.Component {
       <div>
         <div className="Main">
           {/* this will either be <Groups> or <Users> */}
-          {this.props.children.main}
+          {this.props.main}
         </div>
         <div className="Sidebar">
           {/* this will either be <GroupsSidebar> or <UsersSidebar> */}
-          {this.props.children.sidebar}
+          {this.props.sidebar}
         </div>
       </div>
     )
@@ -470,15 +495,14 @@ class Users extends React.Component {
     return (
       <div>
         {/* if at "/users/123" this will be <Profile> */}
-        {/* UsersSidebar will also get <Profile> as this.props.children,
-            you pick where it renders */}
+        {/* UsersSidebar will also get <Profile> as this.props.children.
+            You can pick where it renders */}
         {this.props.children}
       </div>
     )
   }
 }
 ```
-
 
 
 ## Mixins
@@ -537,11 +561,11 @@ Stringifies the query into the pathname, using the router's config.
 Creates a URL, using the router's config. For example, it will add `#/` in front of the `pathname` for hash history.
 
 ##### `isActive(pathname, query, indexOnly)`
-Returns `true` or `false` depending on if the current path is active. Will be true for every route in the route branch matched by the `pathname` (child route is active, therefore parent is too).
+Returns `true` or `false` depending on if the current path is active. Will be true for every route in the route branch matched by the `pathname` (child route is active, therefore parent is too), unless `indexOnly` is specified, in which case it will only match the exact path.
 
 ###### arguments
 - `pathname` - the full URL with or without the query.
-- `query` - an object that will be stringified by the router.
+- `query` - if specified, an object containing key/value pairs that must be active in the current query - explicit `undefined` values require the corresponding key to be missing or `undefined` in the current query
 - `indexOnly` - a boolean (default: `false`).
 
 #### Examples
@@ -647,6 +671,19 @@ Returns a new `createHistory` function that may be used to create history object
 - match(location, (error, redirectLocation, nextState) => {})
 - isActive(pathname, query, indexOnly=false)
 
+
+## `match(location, cb)`
+
+This function is to be used for server-side rendering. It matches a set of routes to a location, without rendering, and calls a `callback(error, redirectLocation, renderProps)` when it's done.
+
+The three arguments to the callback function you pass to `match` are:
+* `error`: A Javascript `Error` object if an error occurred, `undefined` otherwise.
+* `redirectLocation`: A [Location](/docs/Glossary.md#location) object if the route is a redirect, `undefined` otherwise.
+* `renderProps`: The props you should pass to the routing context if the route matched, `undefined` otherwise.
+
+If all three parameters are `undefined`, this means that there was no route found matching the given location.
+
+*Note: You probably don't want to use this in a browser unless you're doing server-side rendering of async routes.*
 
 
 ## `createRoutes(routes)`
