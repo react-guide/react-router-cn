@@ -105,7 +105,7 @@ URL                     | 组件
 
 ### 让 UI 从 URL 中解耦出来
 
-如果我们可以将 `/inbox` 从 `/inbox/message/:id` 中去除，并且还能够让 `Message` 嵌套在 `App -> Inbox` 中渲染，那会非常赞。绝对路径可以让我们做到这一点。
+如果我们可以将 `/inbox` 从 `/inbox/messages/:id` 中去除，并且还能够让 `Message` 嵌套在 `App -> Inbox` 中渲染，那会非常赞。绝对路径可以让我们做到这一点。
 
 ```js
 React.render((
@@ -137,7 +137,7 @@ URL                     | 组件
 
 ### 兼容旧的 URL
 
-等一下，我们刚刚改变了一个 URL! [这样不好](http://www.w3.org/Provider/Style/URI.html)。 现在任何人访问 `/inbox/message/5` 都会看到一个错误页面。:(
+等一下，我们刚刚改变了一个 URL! [这样不好](http://www.w3.org/Provider/Style/URI.html)。 现在任何人访问 `/inbox/messages/5` 都会看到一个错误页面。:(
 
 不要担心。我们可以使用 [`<Redirect>`](/docs/API.md#redirect) 使这个 URL 重新正常工作。
 
@@ -160,7 +160,7 @@ React.render((
 ), document.body)
 ```
 
-现在当有人点击 `/inbox/message/5` 这个链接，他们会被自动跳转到 `/message/5`。 :raised_hands:
+现在当有人点击 `/inbox/messages/5` 这个链接，他们会被自动跳转到 `/messages/5`。 :raised_hands:
 
 ### 进入和离开的Hook
 
@@ -168,7 +168,7 @@ React.render((
 
 在路由跳转过程中，[`onLeave` hook](/docs/Glossary.md#leavehook) 会在所有将离开的路由中触发，从最下层的子路由开始直到最外层父路由结束。然后[`onEnter` hook](/docs/Glossary.md#enterhook)会从最外层的父路由开始直到最下层子路由结束。
 
-继续我们上面的例子，如果一个用户点击链接，从 `/message/5` 跳转到 `/about`，下面是这些 hook 的执行顺序：
+继续我们上面的例子，如果一个用户点击链接，从 `/messages/5` 跳转到 `/about`，下面是这些 hook 的执行顺序：
 
   - `/messages/:id` 的 `onLeave`
   - `/inbox` 的 `onLeave`
