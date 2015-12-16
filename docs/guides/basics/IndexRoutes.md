@@ -38,7 +38,7 @@
 
 ## Index Links
 
-如果你在这个app中使用 `<Link to="/">Home</Link>` , 
+如果你在这个 app 中使用 `<Link to="/">Home</Link>` , 
 它会一直处于激活状态，因为所有的 URL 的开头都是 `/` 。
 这确实是个问题，因为我们仅仅希望在 `Home` 被渲染后，激活并链接到它。
 
