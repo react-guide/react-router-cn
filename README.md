@@ -2,11 +2,6 @@
 
 <img src="https://rackt.github.io/react-router/img/vertical.png" width="300"/>
 
-[![Travis][build-badge]][build]
-[![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
-[![Discord][discord-badge]][discord]
-
 在线 Gitbook 地址：http://react-guide.github.io/react-router-cn/
 
 英文原版：https://github.com/rackt/react-router/tree/master/docs
@@ -159,15 +154,3 @@ React Router 灵感来源于 Ember's fantastic router。非常感谢 Ember 团�
 
 
 **本文档翻译流程符合 [ETC 翻译规范](https://github.com/react-guide/ETC)，欢迎你来一起完善**
-
-[build-badge]: https://img.shields.io/travis/rackt/react-router/master.svg?style=flat-square
-[build]: https://travis-ci.org/rackt/react-router
-
-[npm-badge]: https://img.shields.io/npm/v/react-router.svg?style=flat-square
-[npm]: https://www.npmjs.org/package/react-router
-
-[coveralls-badge]: https://img.shields.io/coveralls/rackt/react-router/master.svg?style=flat-square
-[coveralls]: https://coveralls.io/github/rackt/react-router
-
-[discord-badge]: https://img.shields.io/badge/Discord-join%20chat%20%E2%86%92-738bd7.svg?style=flat-square
-[discord]: https://discord.gg/0ZcbPKXt5bYaNQ46
