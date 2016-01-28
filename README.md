@@ -10,14 +10,18 @@ React Router 是完整的 React 路由解决方案
 
 React Router 保持 UI 与 URL 同步。它拥有简单的 API 与强大的功能例如代码缓冲加载、动态路由匹配、以及建立正确的位置过渡处理。你第一个念头想到的应该是 URL，而不是事后再想起。
 
+**重点：这是 React Router 的 `master` 分支，其中包含了很多还没有发布的修改。如果要看到最新公布的代码，请浏览 [`latest` 标签](https://github.com/rackt/react-router/tree/latest)。**
+
 ### 文档 & 帮助
 
 - [API 文档与指南](/docs)
-- [Upgrade Guide](https://github.com/rackt/react-router/blob/master/UPGRADE_GUIDE.md)
-- [Changelog](https://github.com/rackt/react-router/blob/master/CHANGELOG.md)
-- [#react-router channel on reactiflux](http://www.reactiflux.com/)
+- [Change Log](https://github.com/rackt/react-router/blob/master/CHANGELOG.md)
+- [Stack Overflow](http://stackoverflow.com/questions/tagged/react-router)
+- [Codepen Boilerplate](http://codepen.io/anon/pen/xwQZdy?editors=001) 用于反馈 bug
 
-**注意：** **如果你仍然使用的是 React Router 0.13.x，可以在 [the 0.13.x branch](https://github.com/rackt/react-router/tree/0.13.x) 找到 [文档](https://github.com/rackt/react-router/tree/0.13.x/docs/guides)。**
+**注意：** **如果你仍然使用的是 React Router 0.13.x，可以在 [the 0.13.x branch](https://github.com/rackt/react-router/tree/0.13.x) 找到 [文档](https://github.com/rackt/react-router/tree/0.13.x/docs/guides)。升级信息可以查看 [change log](https://github.com/rackt/react-router/blob/master/CHANGELOG.md)。**
+
+如果有疑问和技术难点，请到[我们的 Reactiflux 频道](https://discord.gg/0ZcbPKXt5bYaNQ46)或 [Stack Overflow](http://stackoverflow.com/questions/tagged/react-router) 提问。这里的 issue 是**专门**为反馈 bug 和新特性提出所设立的。
 
 ### 浏览器支持
 
@@ -25,15 +29,11 @@ React Router 保持 UI 与 URL 同步。它拥有简单的 API 与强大的功�
 
 ### 安装
 
-#### npm + webpack/browserify
-
 首先通过 [npm](https://www.npmjs.com/) 安装：
 
-    $ npm install history react-router@latest
+    $ npm install --save react-router
 
-请注意，你还需要安装 [history](https://www.npmjs.com/package/history)，因为它也是 React Router 的依赖，而且在 npm 3+ 下不会自动安装。
-
-然后如你使用别的一样使用模块管理器或者 webpack：
+然后使用一个支持 CommonJS 或 ES2015 的模块管理器，例如 [webpack](https://webpack.github.io/)：
 
 ```js
 // 使用 ES6 的转译器，如 babel
@@ -46,23 +46,36 @@ var Route = ReactRouter.Route
 var Link = ReactRouter.Link
 ```
 
-你可以从 `lib` 目录 require 你需要的部分：
+也可以在 [npmcdn](https://npmcdn.com) 上构建 UMD 格式：
 
-```js
-import { Router } from 'react-router/lib/Router'
+```html
+<script src="https://npmcdn.com/react-router/umd/ReactRouter.min.js"></script>
 ```
 
-在 `umd` 目录还有一个 UMD 模块格式来构建：
+你可以在 `window.ReactRouter` 找到这个库。
 
-```js
-import ReactRouter from 'react-router/umd/ReactRouter'
-```
+### 版本控制和稳定性
 
-如果你要全局调用，你可以在 `window.ReactRouter` 找到这个库。
+React Router 遵循语义化版本控制，并很好地诠释了它。我们希望 React Router 是一个稳定的依赖库，这样易于保持流行性。这是我们对你的应用的升级策略。
 
-#### CDN
+假设我们目前是 1.0 版本：
 
-如果你想在页面上用 `<script>` 标签来完成它，你可以用 UMD/global 构建 [cdnjs 托管版本](https://cdnjs.com/libraries/react-router)。
+1. 2.0 完全向后兼容 1.0，所以你可以放心地升级，然后逐步更新你的代码。
+2. 所有在 1.0 被弃用的 API 都会在控制台以 warn 的形式打印出来，并链接到升级指南。
+3. 在 3.0 中将会完全移除 1.0 所弃用的东西。
+4. 3.0 将发布不早于 2.0 三个月后。最坏的情况是，给你一个新的 API，你需要花费 6 个月的时间去完美升级。
+5. 可以用 rackt/rackt-codemod 去自动升级你的代码
+
+> 如果是完全向后兼容的，为什么这不是一个小版本呢？
+
+如果我们不提供向后兼容性，然后你就不会问这个问题 —— 升级后的应用将不可运行。这不是我们想要的结果，我们想要平稳地，逐步地升级。
+
+在实践中，这意味着你可以：
+
+1. 从 1.0 升级到 2.0，你的应用仍可以运行。
+2. 逐步更新你的代码到新的 API，在下一个版本发布之前，你有 3 个月的时间去完成。
+3. 运行 codemods 去处理自动运行 (2) 部分。
+4. 如果您的代码运行没有警告，你可以使用 3.0 版本重复这个列表
 
 ### 这看起来像什么？
 
@@ -132,6 +145,8 @@ React.render((
 更多请看 [介绍](/docs/Introduction.md)、[高级用法](/docs/guides/advanced/README.md)和 [示例](https://github.com/rackt/react-router/tree/master/examples)。
 
 ### 感谢
+
+感谢[我们的赞助商](https://github.com/rackt/react-router/blob/master/SPONSORS.md)对于 React Router 开发的支持。
 
 React Router 灵感来源于 Ember's fantastic router。非常感谢 Ember 团队。
 
