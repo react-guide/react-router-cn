@@ -200,7 +200,7 @@ type RouteConfig = Array<Route>;
 type RouteHook = (nextLocation?: Location) => any;
 ```
 
-*route hook* 是用于防止用户离开某个路由的函数。在正常的路由变换时，它接收下一个 
+*route hook* 是用于防止用户离开某个路由的函数。在正常的路由变换时，它接收下一个 
 [location](#location) 作为参数，并且必须 `return false` 以取消变换，或者 `return` 提示消息给用户。 当它在web浏览器的 `beforeunload ` 事件中被调用时，它不会接收任何参数，且必须 `return` 一个提示信息以取消变换。
 
 
