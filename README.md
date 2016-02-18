@@ -1,7 +1,5 @@
 # [React Router 中文文档](https://github.com/react-guide/react-router-cn)
 
-<img src="https://rackt.github.io/react-router/img/vertical.png" width="300"/>
-
 在线 Gitbook 地址：http://react-guide.github.io/react-router-cn/
 
 英文原版：https://github.com/rackt/react-router/tree/master/docs
