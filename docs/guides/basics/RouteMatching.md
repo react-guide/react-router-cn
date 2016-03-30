@@ -7,7 +7,7 @@
 3. 它的 [优先级](#precedence)
 
 ### 嵌套关系
-React Router 使用路由嵌套的概念来让你定义 view 的嵌套集合，当一个给定的 URL 被调用时，整个集合中（命中的部分）都会被渲染。嵌套路由被描述成一种树形结构。React Router 会深度优先遍历整个[理由配置](/docs/Glossary.md#routeconfig)来寻找一个与给定的 URL 相匹配的路由。
+React Router 使用路由嵌套的概念来让你定义 view 的嵌套集合，当一个给定的 URL 被调用时，整个集合中（命中的部分）都会被渲染。嵌套路由被描述成一种树形结构。React Router 会深度优先遍历整个[路由配置](/docs/Glossary.md#routeconfig)来寻找一个与给定的 URL 相匹配的路由。
 
 ### 路径语法
 路由路径是匹配一个（或一部分）URL 的 [一个字符串模式](/docs/Glossary.md#routepattern)。大部分的路由路径都可以直接按照字面量理解，除了以下几个特殊的符号：
