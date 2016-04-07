@@ -1,33 +1,16 @@
 # 在组件外部使用导航
 
-虽然在路由组件内部，可以获取 `this.props.history` 来实现导航。也可以引入 `History` mixin，并用它提供的
- `this.history` 来实现导航。然而，很多应用仍然希望可以在他们的组件外部使用导航功能。
-
-
-这个非常简单，要做的就是拿到你的 history 对象：
-
-你可以在应用的任何地方，创建一个模块来输出你的 history 对象。
-
+虽然在组件内部可以使用 `this.context.router` 来实现导航，但许多应用想要在组件外部使用导航。使用Router组件上被赋予的history可以在组件外部实现导航。
 
 ```js
-// history.js
-import createBrowserHistory from 'history/lib/createBrowserHistory'
-export default createBrowserHistory()
+// your main file that renders a Router
+import { Router, browserHistory } from 'react-router'
+import routes from './app/routes'
+render(<Router history={browserHistory} routes={routes}/>, el)
 ```
 
-然后引入这个模块渲染一个 `<Router>`:
-
 ```js
-// index.js
-import history from './history'
-React.render(<Router history={history}/>, el)
-```
-
-现在你可以在应用的其他地方使用这个 history 对象了，例如一个 flux action 文件
-
-
-```js
-// actions.js
-import history from './history'
-history.replaceState(null, '/some/path')
+// somewhere like a redux/flux action file:
+import { browserHistory } from 'react-router'
+browserHistory.push('/some/path')
 ```
