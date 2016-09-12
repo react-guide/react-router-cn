@@ -44,10 +44,10 @@ var Route = ReactRouter.Route
 var Link = ReactRouter.Link
 ```
 
-也可以在 [npmcdn](https://npmcdn.com) 上构建 UMD 格式：
+也可以在 [unpkg](https://unpkg.com) 上构建 UMD 格式：
 
 ```html
-<script src="https://npmcdn.com/react-router/umd/ReactRouter.min.js"></script>
+<script src="https://unpkg.com/react-router/umd/ReactRouter.min.js"></script>
 ```
 
 你可以在 `window.ReactRouter` 找到这个库。
