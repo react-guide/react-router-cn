@@ -1,0 +1,42 @@
+{
+  "name": "react-router-cn",
+  "description": "React Router 中文文档",
+  "scripts": {
+    "clean": "rimraf _book",
+    "build": "gitbook build -g react-guide/react-router-cn",
+    "watch": "gitbook serve",
+    "publish": "npm run clean && npm run build && cd _book && git init && git commit --allow-empty -m 'update book' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update book' && git push git@github.com:react-guide/react-router-cn gh-pages --force"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-guide/react-router-cn.git"
+  },
+  "keywords": [
+    "flux",
+    "redux",
+    "reducer",
+    "react",
+    "reactjs",
+    "hot",
+    "reload",
+    "hmr",
+    "live",
+    "edit",
+    "webpack"
+  ],
+  "authors": [
+    "Cam Song <neosoyn@gmail.com> (http://github.com/camsong)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/react-guide/react-router-cn/issues"
+  },
+  "homepage": "https://github.com/react-guide/react-router-cn",
+  "devDependencies": {
+    "gitbook-cli": "^0.3.4",
+    "gitbook-plugin-prism": "^0.1.1",
+    "gitbook-plugin-ga": "^0.2.1",
+    "gitbook-plugin-edit-link": "^1.4.1",
+    "rimraf": "^2.3.4"
+  }
+}

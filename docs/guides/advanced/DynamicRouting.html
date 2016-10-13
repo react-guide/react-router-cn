@@ -1,0 +1,509 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>动态路由 | React Router 中文文档</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.3.3">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-edit-link/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-prism/prism.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../../docs/guides/advanced/ConfirmingNavigation.html" />
+    
+    
+    <link rel="prev" href="../../../docs/guides/advanced/index.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="3.1" data-basepath="../../.." data-revision="Thu Oct 13 2016 13:07:56 GMT+0800 (CST)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        
+
+        
+
+        
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="docs/Introduction.html">
+            
+                
+                    <a href="../../../docs/Introduction.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        简介
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="docs/guides/basics/index.html">
+            
+                
+                    <a href="../../../docs/guides/basics/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        基础
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="docs/guides/basics/RouteConfiguration.html">
+            
+                
+                    <a href="../../../docs/guides/basics/RouteConfiguration.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        路由配置
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="docs/guides/basics/RouteMatching.html">
+            
+                
+                    <a href="../../../docs/guides/basics/RouteMatching.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        路由匹配原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="docs/guides/basics/Histories.html">
+            
+                
+                    <a href="../../../docs/guides/basics/Histories.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        History
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="docs/guides/basics/IndexRoutes.html">
+            
+                
+                    <a href="../../../docs/guides/basics/IndexRoutes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        默认路由（IndexRoute）与 IndexLink
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="docs/guides/advanced/index.html">
+            
+                
+                    <a href="../../../docs/guides/advanced/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        高级用法
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="3.1" data-path="docs/guides/advanced/DynamicRouting.html">
+            
+                
+                    <a href="../../../docs/guides/advanced/DynamicRouting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        动态路由
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="docs/guides/advanced/ConfirmingNavigation.html">
+            
+                
+                    <a href="../../../docs/guides/advanced/ConfirmingNavigation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        跳转前确认
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="docs/guides/advanced/ServerRendering.html">
+            
+                
+                    <a href="../../../docs/guides/advanced/ServerRendering.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        服务端渲染
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="docs/guides/advanced/ComponentLifecycle.html">
+            
+                
+                    <a href="../../../docs/guides/advanced/ComponentLifecycle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        组件生命周期
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="docs/guides/advanced/NavigatingOutsideOfComponents.html">
+            
+                
+                    <a href="../../../docs/guides/advanced/NavigatingOutsideOfComponents.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        组件外部跳转
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="docs/UPGRADE_GUIDE.html">
+            
+                
+                    <a href="../../../docs/UPGRADE_GUIDE.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        升级指南
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="docs/Troubleshooting.html">
+            
+                
+                    <a href="../../../docs/Troubleshooting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        排错
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="docs/API.html">
+            
+                
+                    <a href="../../../docs/API.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        API 文档
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="docs/Glossary.html">
+            
+                
+                    <a href="../../../docs/Glossary.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        词汇表
+                    </a>
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                Published with GitBook
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Share on Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Share on Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Share on Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Share on Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Share on Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../../" >React Router 中文文档</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <a id="edit-link" href="https://github.com/react-guide/react-router-cn/tree/master/docs/guides/advanced/DynamicRouting.md" class="btn fa fa-edit pull-left">&#xA0;&#xA0;&#x5F00;&#x59CB;&#x7EA0;&#x9519;</a><h1 id="%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1">&#x52A8;&#x6001;&#x8DEF;&#x7531;</h1>
+<p>React Router &#x9002;&#x7528;&#x4E8E;&#x5C0F;&#x578B;&#x7F51;&#x7AD9;&#xFF0C;&#x6BD4;&#x5982; <a href="https://reactjs-training.com" target="_blank">React.js Training</a>&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x652F;&#x6301; <a href="https://www.facebook.com/" target="_blank">Facebook</a> &#x548C; <a href="https://twitter.com/" target="_blank">Twitter</a> &#x8FD9;&#x7C7B;&#x5927;&#x578B;&#x7F51;&#x7AD9;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x5927;&#x578B;&#x5E94;&#x7528;&#x6765;&#x8BF4;&#xFF0C;&#x4E00;&#x4E2A;&#x9996;&#x5F53;&#x5176;&#x51B2;&#x7684;&#x95EE;&#x9898;&#x5C31;&#x662F;&#x6240;&#x9700;&#x52A0;&#x8F7D;&#x7684; JavaScript &#x7684;&#x5927;&#x5C0F;&#x3002;&#x7A0B;&#x5E8F;&#x5E94;&#x5F53;&#x53EA;&#x52A0;&#x8F7D;&#x5F53;&#x524D;&#x6E32;&#x67D3;&#x9875;&#x6240;&#x9700;&#x7684; JavaScript&#x3002;&#x6709;&#x4E9B;&#x5F00;&#x53D1;&#x8005;&#x5C06;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x79F0;&#x4E4B;&#x4E3A;&#x201C;&#x4EE3;&#x7801;&#x5206;&#x62C6;&#x201D; &#x2014;&#x2014; &#x5C06;&#x6240;&#x6709;&#x7684;&#x4EE3;&#x7801;&#x5206;&#x62C6;&#x6210;&#x591A;&#x4E2A;&#x5C0F;&#x5305;&#xFF0C;&#x5728;&#x7528;&#x6237;&#x6D4F;&#x89C8;&#x8FC7;&#x7A0B;&#x4E2D;&#x6309;&#x9700;&#x52A0;&#x8F7D;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x5E95;&#x5C42;&#x7EC6;&#x8282;&#x7684;&#x4FEE;&#x6539;&#x4E0D;&#x5E94;&#x8BE5;&#x9700;&#x8981;&#x5B83;&#x4E0A;&#x9762;&#x6BCF;&#x4E00;&#x5C42;&#x7EA7;&#x90FD;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x4E3A;&#x4E00;&#x4E2A;&#x7167;&#x7247;&#x6D4F;&#x89C8;&#x9875;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x8DEF;&#x5F84;&#x4E0D;&#x5E94;&#x8BE5;&#x5F71;&#x54CD;&#x5230;&#x9996;&#x9875;&#x52A0;&#x8F7D;&#x7684; JavaScript &#x7684;&#x5927;&#x5C0F;&#x3002;&#x4E5F;&#x4E0D;&#x80FD;&#x56E0;&#x4E3A;&#x591A;&#x4E2A;&#x56E2;&#x961F;&#x5171;&#x7528;&#x4E00;&#x4E2A;&#x5927;&#x578B;&#x7684;&#x8DEF;&#x7531;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x800C;&#x9020;&#x6210;&#x5408;&#x5E76;&#x65F6;&#x7684;&#x51B2;&#x7A81;&#x3002;</p>
+<p>&#x8DEF;&#x7531;&#x662F;&#x4E2A;&#x975E;&#x5E38;&#x9002;&#x4E8E;&#x505A;&#x4EE3;&#x7801;&#x5206;&#x62C6;&#x7684;&#x5730;&#x65B9;&#xFF1A;&#x5B83;&#x7684;&#x8D23;&#x4EFB;&#x5C31;&#x662F;&#x914D;&#x7F6E;&#x597D;&#x6BCF;&#x4E2A; view&#x3002;</p>
+<p>React Router &#x91CC;&#x7684;<a href="docs/guides/basics/RouteMatching.md">&#x8DEF;&#x5F84;&#x5339;&#x914D;</a>&#x4EE5;&#x53CA;&#x7EC4;&#x4EF6;&#x52A0;&#x8F7D;&#x90FD;&#x662F;&#x5F02;&#x6B65;&#x5B8C;&#x6210;&#x7684;&#xFF0C;&#x4E0D;&#x4EC5;&#x5141;&#x8BB8;&#x4F60;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#x7EC4;&#x4EF6;&#xFF0C;<strong>&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#x8DEF;&#x7531;&#x914D;&#x7F6E;</strong>&#x3002;&#x5728;&#x9996;&#x6B21;&#x52A0;&#x8F7D;&#x5305;&#x4E2D;&#x4F60;&#x53EA;&#x9700;&#x8981;&#x6709;&#x4E00;&#x4E2A;&#x8DEF;&#x5F84;&#x5B9A;&#x4E49;&#xFF0C;&#x8DEF;&#x7531;&#x4F1A;&#x81EA;&#x52A8;&#x89E3;&#x6790;&#x5269;&#x4E0B;&#x7684;&#x8DEF;&#x5F84;&#x3002;</p>
+<p>Route &#x53EF;&#x4EE5;&#x5B9A;&#x4E49; <a href="docs/API.md#getchildrouteslocation-callback"><code>getChildRoutes</code></a>&#xFF0C;<a href="docs/API.md#getindexroutelocation-callback"><code>getIndexRoute</code></a> &#x548C; <a href="docs/API.md#getcomponentslocation-callback"><code>getComponents</code></a> &#x8FD9;&#x51E0;&#x4E2A;&#x51FD;&#x6570;&#x3002;&#x5B83;&#x4EEC;&#x90FD;&#x662F;&#x5F02;&#x6B65;&#x6267;&#x884C;&#xFF0C;&#x5E76;&#x4E14;&#x53EA;&#x6709;&#x5728;&#x9700;&#x8981;&#x65F6;&#x624D;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x6211;&#x4EEC;&#x5C06;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x79F0;&#x4E4B;&#x4E3A; &#x201C;&#x9010;&#x6E10;&#x5339;&#x914D;&#x201D;&#x3002; React Router &#x4F1A;&#x9010;&#x6E10;&#x7684;&#x5339;&#x914D; URL &#x5E76;&#x53EA;&#x52A0;&#x8F7D;&#x8BE5; URL &#x5BF9;&#x5E94;&#x9875;&#x9762;&#x6240;&#x9700;&#x7684;&#x8DEF;&#x5F84;&#x914D;&#x7F6E;&#x548C;&#x7EC4;&#x4EF6;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x914D;&#x5408; <a href="http://webpack.github.io/" target="_blank">webpack</a> &#x8FD9;&#x7C7B;&#x7684;&#x4EE3;&#x7801;&#x5206;&#x62C6;&#x5DE5;&#x5177;&#x4F7F;&#x7528;&#x7684;&#x8BDD;&#xFF0C;&#x4E00;&#x4E2A;&#x539F;&#x672C;&#x7E41;&#x7410;&#x7684;&#x6784;&#x67B6;&#x5C31;&#x4F1A;&#x53D8;&#x5F97;&#x66F4;&#x7B80;&#x6D01;&#x660E;&#x4E86;&#x3002;</p>
+<pre><code class="lang-js"><span class="token keyword">const</span> CourseRoute <span class="token operator">=</span> <span class="token punctuation">{</span>
+  path<span class="token punctuation">:</span> <span class="token string">&apos;course/:courseId&apos;</span><span class="token punctuation">,</span>
+
+  <span class="token function">getChildRoutes</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    require<span class="token punctuation">.</span><span class="token function">ensure</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>require<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+        <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;./routes/Announcements&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;./routes/Assignments&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;./routes/Grades&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token function">getIndexRoute</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    require<span class="token punctuation">.</span><span class="token function">ensure</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>require<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;./components/Index&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token function">getComponents</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    require<span class="token punctuation">.</span><span class="token function">ensure</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>require<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;./components/Course&apos;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x73B0;&#x5728;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x4E00;&#x4E0B; webpack &#x90FD;&#x505A;&#x4E86;&#x54EA;&#x4E9B;&#x3002;&#x5F00;&#x73A9;&#x7B11;&#xFF0C;&#x6211;&#x73B0;&#x5728;&#x4E0D;&#x60F3;&#x8BA9;&#x4F60;&#x4F24;&#x5FC3;&#x3002;</p>
+<p>&#x8FD0;&#x884C; <a href="https://github.com/rackt/react-router/tree/master/examples/huge-apps" target="_blank">huge apps</a> &#x5B9E;&#x4F8B;&#xFF0C;&#x6253;&#x5F00;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x5BA1;&#x67E5;&#x5143;&#x7D20;&#x9009;&#x9879;&#x3002;&#x4F60;&#x4F1A;&#x53D1;&#x73B0;&#x5728;&#x8DEF;&#x7531;&#x53D1;&#x751F;&#x6539;&#x53D8;&#x65F6;&#xFF0C;&#x8D44;&#x6E90;&#x6309;&#x9700;&#x52A0;&#x8F7D;&#x3002;</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../../docs/guides/advanced/index.html" class="navigation navigation-prev " aria-label="Previous page: 高级用法"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../../docs/guides/advanced/ConfirmingNavigation.html" class="navigation navigation-next " aria-label="Next page: 跳转前确认"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../../gitbook/app.js"></script>
+
+    
+    <script src="../../../gitbook/plugins/gitbook-plugin-edit-link/plugin.js"></script>
+    
+
+    
+    <script src="../../../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"edit-link":{"base":"https://github.com/react-guide/react-router-cn/tree/master","label":"开始纠错"},"ga":{"token":"UA-68960215-1","configuration":"auto"}};
+    gitbook.start(config);
+});
+</script>
+
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-68960215-1', 'auto');ga('send', 'pageview');</script>
+    </body>
+    
+</html>
