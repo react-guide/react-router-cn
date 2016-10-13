@@ -671,7 +671,7 @@ RouteContext mixin 提供了一个将 route 组件设置到 context 中的便捷
 
 ## `match(location, cb)`
 
-这个函数被用于服务端渲染。它在渲染之前会匹配一组 route 到一个 location，并且在完成市调用 `callback(error, redirectLocation, renderProps)`。
+这个函数被用于服务端渲染。它在渲染之前会匹配一组 route 到一个 location，并且在完成时调用 `callback(error, redirectLocation, renderProps)`。
 
 传给回调函数去 `match` 的三个参数如下：
 * `error`：如果报错时会出现一个 Javascript 的 `Error` 对象，否则是 `undefined`。
