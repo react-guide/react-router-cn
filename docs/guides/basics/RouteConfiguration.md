@@ -4,6 +4,7 @@
 
 ```js
 import React from 'react'
+import { render } from 'react-dom'
 import { Router, Route, Link } from 'react-router'
 
 const App = React.createClass({
@@ -44,7 +45,7 @@ const Message = React.createClass({
   }
 })
 
-React.render((
+render((
   <Router>
     <Route path="/" component={App}>
       <Route path="about" component={About} />
@@ -78,7 +79,7 @@ const Dashboard = React.createClass({
   }
 })
 
-React.render((
+render((
   <Router>
     <Route path="/" component={App}>
       {/* 当 url 为/时渲染 Dashboard */}
@@ -108,7 +109,7 @@ URL                     | 组件
 如果我们可以将 `/inbox` 从 `/inbox/messages/:id` 中去除，并且还能够让 `Message` 嵌套在 `App -> Inbox` 中渲染，那会非常赞。绝对路径可以让我们做到这一点。
 
 ```js
-React.render((
+render((
   <Router>
     <Route path="/" component={App}>
       <IndexRoute component={Dashboard} />
@@ -144,7 +145,7 @@ URL                     | 组件
 ```js
 import { Redirect } from 'react-router'
 
-React.render((
+render((
   <Router>
     <Route path="/" component={App}>
       <IndexRoute component={Dashboard} />
@@ -202,5 +203,5 @@ const routeConfig = [
   }
 ]
 
-React.render(<Router routes={routeConfig} />, document.body)
+render(<Router routes={routeConfig} />, document.body)
 ```
