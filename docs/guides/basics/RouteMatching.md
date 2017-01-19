@@ -12,10 +12,10 @@ React Router 使用路由嵌套的概念来让你定义 view 的嵌套集合，�
 ### 路径语法
 路由路径是匹配一个（或一部分）URL 的 [一个字符串模式](/docs/Glossary.md#routepattern)。大部分的路由路径都可以直接按照字面量理解，除了以下几个特殊的符号：
 
-  - `:paramName` – 匹配一段位于 `/`、`?` 或 `#` 之后的 URL。 命中的部分将被作为一个[参数](/docs/Glossary.md#params) 
+  - `:paramName` – 匹配一段位于 `/`、`?` 或 `#` 之后的 URL。 命中的部分将被作为一个[参数](/docs/Glossary.md#params)
   - `()` – 在它内部的内容被认为是可选的
   - `*` – 匹配任意字符（非贪婪的）直到命中下一个字符或者整个 URL 的末尾，并创建一个 `splat` [参数](/docs/Glossary.md#params)
-  - `**` - 匹配任意字符（贪婪的）直到命中下一个字符 `/`、`?` 或 `#`，并创建一个 `splat` [参数](/docs/Glossary.md#params)
+  - `**` - 匹配任意字符（贪婪的）直到命中下一个字符 `/`、`?` 或 `#`，并创建一个 `splat` [参数](/docs/Glossary.md#params)
   
 ```js
 <Route path="/hello/:name">         // 匹配 /hello/michael 和 /hello/ryan
