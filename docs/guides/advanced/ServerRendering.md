@@ -19,8 +19,7 @@ import { match, RoutingContext } from 'react-router'
 import routes from './routes'
 
 serve((req, res) => {
-  // 注意！这里的 req.url 应该是从初始请求中获得的
-  // 完整的 URL 路径，包括查询字符串。
+  // 注意！这里的 req.url 必须是原始请求的全路径URL，包括参数字段
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {
       res.send(500, error.message)
