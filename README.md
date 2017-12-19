@@ -1,6 +1,7 @@
 # [React Router 中文文档](https://github.com/react-guide/react-router-cn)
 
 > 本文档是基于 React-Router 2.X 版本翻译。最新版变化较多请访问[英文站点](https://reacttraining.com/react-router/web/guides/philosophy)，实在跟不上节奏啊😂😂
+
 在线 Gitbook 地址：http://react-guide.github.io/react-router-cn/
 
 英文原版：https://github.com/rackt/react-router/tree/master/docs
