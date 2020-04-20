@@ -5,7 +5,7 @@
 ```js
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, Link } from 'react-router'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 const App = React.createClass({
   render() {
