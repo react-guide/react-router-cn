@@ -5,7 +5,8 @@
 ```js
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, Link } from 'react-router'
+import { Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 const App = React.createClass({
   render() {
@@ -48,9 +49,9 @@ const Message = React.createClass({
 render((
   <Router>
     <Route path="/" component={App}>
-      <Route path="about" component={About} />
-      <Route path="inbox" component={Inbox}>
-        <Route path="messages/:id" component={Message} />
+      <Route path="/about" component={About} />
+      <Route path="/inbox" component={Inbox}>
+        <Route path="/messages/:id" component={Message} />
       </Route>
     </Route>
   </Router>
