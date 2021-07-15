@@ -216,7 +216,7 @@ const Message = React.createClass({
 
   componentDidMount() {
     // 来自于路径 `/inbox/messages/:id`
-    const id = this.props.params.id
+    const id = this.props.match.params.id
 
     fetchMessage(id, function (err, message) {
       this.setState({ message: message })
